@@ -9,5 +9,10 @@ namespace TTPAPI.Models
     {
         public long routeId{get;set;}
         public IList<RouteDetail> RouteDetail { get; set; }
+
+        public void login(string UserName,string Password)
+        {
+
+        }
     }
 }

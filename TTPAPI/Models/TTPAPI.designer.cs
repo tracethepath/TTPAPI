@@ -22,7 +22,7 @@ namespace TTPAPI.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="WebApi")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="TTPAPI")]
 	public partial class TTPAPIDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -36,9 +36,6 @@ namespace TTPAPI.Models
     partial void InsertDeviceCurrentLocation(DeviceCurrentLocation instance);
     partial void UpdateDeviceCurrentLocation(DeviceCurrentLocation instance);
     partial void DeleteDeviceCurrentLocation(DeviceCurrentLocation instance);
-    partial void InsertDeviceLocationHistory(DeviceLocationHistory instance);
-    partial void UpdateDeviceLocationHistory(DeviceLocationHistory instance);
-    partial void DeleteDeviceLocationHistory(DeviceLocationHistory instance);
     partial void InsertDeviceMaster(DeviceMaster instance);
     partial void UpdateDeviceMaster(DeviceMaster instance);
     partial void DeleteDeviceMaster(DeviceMaster instance);
@@ -75,10 +72,13 @@ namespace TTPAPI.Models
     partial void InsertUserRouteMapDet(UserRouteMapDet instance);
     partial void UpdateUserRouteMapDet(UserRouteMapDet instance);
     partial void DeleteUserRouteMapDet(UserRouteMapDet instance);
+    partial void InsertDeviceLocationHistory(DeviceLocationHistory instance);
+    partial void UpdateDeviceLocationHistory(DeviceLocationHistory instance);
+    partial void DeleteDeviceLocationHistory(DeviceLocationHistory instance);
     #endregion
 		
 		public TTPAPIDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["WebApiConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["TTPAPIConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -120,14 +120,6 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<DeviceCurrentLocation>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DeviceLocationHistory> DeviceLocationHistories
-		{
-			get
-			{
-				return this.GetTable<DeviceLocationHistory>();
 			}
 		}
 		
@@ -224,6 +216,22 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<UserRouteMapDet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DeviceLocationHistory> DeviceLocationHistories
+		{
+			get
+			{
+				return this.GetTable<DeviceLocationHistory>();
+			}
+		}
+		
+		public System.Data.Linq.Table<AccessTokenCache> AccessTokenCaches
+		{
+			get
+			{
+				return this.GetTable<AccessTokenCache>();
 			}
 		}
 	}
@@ -543,164 +551,6 @@ namespace TTPAPI.Models
 					this._UdatedDateTime = value;
 					this.SendPropertyChanged("UdatedDateTime");
 					this.OnUdatedDateTimeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceLocationHistory")]
-	public partial class DeviceLocationHistory : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long @__id;
-		
-		private long _DeviceId;
-		
-		private string _Lat;
-		
-		private string _Long;
-		
-		private System.DateTime _DateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On_idChanging(long value);
-    partial void On_idChanged();
-    partial void OnDeviceIdChanging(long value);
-    partial void OnDeviceIdChanged();
-    partial void OnLatChanging(string value);
-    partial void OnLatChanged();
-    partial void OnLongChanging(string value);
-    partial void OnLongChanged();
-    partial void OnDateTimeChanging(System.DateTime value);
-    partial void OnDateTimeChanged();
-    #endregion
-		
-		public DeviceLocationHistory()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long _id
-		{
-			get
-			{
-				return this.@__id;
-			}
-			set
-			{
-				if ((this.@__id != value))
-				{
-					this.On_idChanging(value);
-					this.SendPropertyChanging();
-					this.@__id = value;
-					this.SendPropertyChanged("_id");
-					this.On_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
-		{
-			get
-			{
-				return this._DeviceId;
-			}
-			set
-			{
-				if ((this._DeviceId != value))
-				{
-					this.OnDeviceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceId = value;
-					this.SendPropertyChanged("DeviceId");
-					this.OnDeviceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Lat
-		{
-			get
-			{
-				return this._Lat;
-			}
-			set
-			{
-				if ((this._Lat != value))
-				{
-					this.OnLatChanging(value);
-					this.SendPropertyChanging();
-					this._Lat = value;
-					this.SendPropertyChanged("Lat");
-					this.OnLatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Long
-		{
-			get
-			{
-				return this._Long;
-			}
-			set
-			{
-				if ((this._Long != value))
-				{
-					this.OnLongChanging(value);
-					this.SendPropertyChanging();
-					this._Long = value;
-					this.SendPropertyChanged("Long");
-					this.OnLongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime DateTime
-		{
-			get
-			{
-				return this._DateTime;
-			}
-			set
-			{
-				if ((this._DateTime != value))
-				{
-					this.OnDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._DateTime = value;
-					this.SendPropertyChanged("DateTime");
-					this.OnDateTimeChanged();
 				}
 			}
 		}
@@ -2666,6 +2516,251 @@ namespace TTPAPI.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceLocationHistory")]
+	public partial class DeviceLocationHistory : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long @__id;
+		
+		private long _DeviceId;
+		
+		private string _Lat;
+		
+		private string _Long;
+		
+		private System.DateTime _DateTime;
+		
+		private string _Typeofnetwork;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_idChanging(long value);
+    partial void On_idChanged();
+    partial void OnDeviceIdChanging(long value);
+    partial void OnDeviceIdChanged();
+    partial void OnLatChanging(string value);
+    partial void OnLatChanged();
+    partial void OnLongChanging(string value);
+    partial void OnLongChanged();
+    partial void OnDateTimeChanging(System.DateTime value);
+    partial void OnDateTimeChanged();
+    partial void OnTypeofnetworkChanging(string value);
+    partial void OnTypeofnetworkChanged();
+    #endregion
+		
+		public DeviceLocationHistory()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long _id
+		{
+			get
+			{
+				return this.@__id;
+			}
+			set
+			{
+				if ((this.@__id != value))
+				{
+					this.On_idChanging(value);
+					this.SendPropertyChanging();
+					this.@__id = value;
+					this.SendPropertyChanged("_id");
+					this.On_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
+		public long DeviceId
+		{
+			get
+			{
+				return this._DeviceId;
+			}
+			set
+			{
+				if ((this._DeviceId != value))
+				{
+					this.OnDeviceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceId = value;
+					this.SendPropertyChanged("DeviceId");
+					this.OnDeviceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lat", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Lat
+		{
+			get
+			{
+				return this._Lat;
+			}
+			set
+			{
+				if ((this._Lat != value))
+				{
+					this.OnLatChanging(value);
+					this.SendPropertyChanging();
+					this._Lat = value;
+					this.SendPropertyChanged("Lat");
+					this.OnLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Long", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Long
+		{
+			get
+			{
+				return this._Long;
+			}
+			set
+			{
+				if ((this._Long != value))
+				{
+					this.OnLongChanging(value);
+					this.SendPropertyChanging();
+					this._Long = value;
+					this.SendPropertyChanged("Long");
+					this.OnLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime DateTime
+		{
+			get
+			{
+				return this._DateTime;
+			}
+			set
+			{
+				if ((this._DateTime != value))
+				{
+					this.OnDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._DateTime = value;
+					this.SendPropertyChanged("DateTime");
+					this.OnDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Typeofnetwork", DbType="NVarChar(50)")]
+		public string Typeofnetwork
+		{
+			get
+			{
+				return this._Typeofnetwork;
+			}
+			set
+			{
+				if ((this._Typeofnetwork != value))
+				{
+					this.OnTypeofnetworkChanging(value);
+					this.SendPropertyChanging();
+					this._Typeofnetwork = value;
+					this.SendPropertyChanged("Typeofnetwork");
+					this.OnTypeofnetworkChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.AccessTokenCache")]
+	public partial class AccessTokenCache
+	{
+		
+		private string _UserId;
+		
+		private string _Token;
+		
+		private System.DateTime _LastAccessDateTime;
+		
+		public AccessTokenCache()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this._UserId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Token", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Token
+		{
+			get
+			{
+				return this._Token;
+			}
+			set
+			{
+				if ((this._Token != value))
+				{
+					this._Token = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastAccessDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime LastAccessDateTime
+		{
+			get
+			{
+				return this._LastAccessDateTime;
+			}
+			set
+			{
+				if ((this._LastAccessDateTime != value))
+				{
+					this._LastAccessDateTime = value;
+				}
 			}
 		}
 	}

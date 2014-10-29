@@ -12,8 +12,9 @@ namespace TTPAPI.Controllers
 {
     public class AccountManagemetController : ApiController
     {
-        //  AddAccountData - Http POST Mehtod - Url : api/AccountManagemet?Token=0f8fad5b-d9cb-469f-a165-70867728950e
-        [System.Web.Http.HttpPost]
+        //  AddAccountData - Http POST Mehtod - Url : api/AccountManagemet/PostAddAccountManagemetData?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("PostAddAccountManagemetData")]
         public HttpResponseMessage AddAccountManagemetData(AccountManagemet objSt, string Token)
         {
             string strJson = string.Empty;
@@ -25,7 +26,7 @@ namespace TTPAPI.Controllers
                     AccountManagemet objAccountManagemet = new AccountManagemet();
                     objAccountManagemet.AccountID = objSt.AccountID;
                     objAccountManagemet.AccountName = objSt.AccountName;
-                    objAccountManagemet.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 15), DateTime.Now.ToString());
+                    objAccountManagemet.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToLongDateString());
                     objAccountManagemet.UpdatedDateTime = DateTime.Now;
                     objAccountManagemet.AccountDesc = objSt.AccountDesc;
                     DB.AccountManagemets.InsertOnSubmit(objAccountManagemet);
@@ -45,8 +46,9 @@ namespace TTPAPI.Controllers
             }
         }
 
-        //  UpdateAccount - Http POST Mehtod - Url : api/AccountManagemet?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&AccountId=1234
-        [System.Web.Http.HttpPost]
+        //  UpdateAccount - Http POST Mehtod - Url : api/AccountManagemet/PostUpdateAccountManagement?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&AccountId=1234
+        [HttpPost]
+        [ActionName("PostUpdateAccountManagement")]
         public HttpResponseMessage UpdateAccountManagement(AccountManagemet objaccount, string Token, string AppKey, string AccountId)
         {
             string strJson = string.Empty;
@@ -59,7 +61,7 @@ namespace TTPAPI.Controllers
                     if (AccountInformation != null)
                     {
                         AccountInformation.AccountName = objaccount.AccountName;
-                        AccountInformation.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 15), DateTime.Now.ToString());
+                        AccountInformation.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToLongDateString());
                         AccountInformation.UpdatedDateTime = DateTime.Now;
                         AccountInformation.AccountDesc = objaccount.AccountDesc;
                         DB.SubmitChanges();
@@ -85,8 +87,9 @@ namespace TTPAPI.Controllers
             }
         }
 
-        //   GetUserInformation - Http POST Mehtod - Url : api/AccountManagemet?AccountId=1
-        [System.Web.Http.HttpGet]
+        //   GetUserInformation - Http GET Mehtod - Url : api/AccountManagemet/GetUserInformation?AccountId=1
+        [HttpGet]
+        [ActionName("GetUserInformation")]
         public HttpResponseMessage GetUserInformation(string AccountId)
         {
             string strJson = string.Empty;
@@ -97,6 +100,7 @@ namespace TTPAPI.Controllers
                 {
                     var UserInformation = (from objUserManagements in DB.UserManagements
                                            join objUserContactDets in DB.UserContactDets on objUserManagements.UserId equals objUserContactDets.UserId
+                                           join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserManagements.UserId equals objUserDeviceMapDets.UserId into g 
                                            //join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
                                            where objUserManagements.AccountID == AccountId
                                            select new
@@ -108,6 +112,7 @@ namespace TTPAPI.Controllers
                                                PhoneNumber = objUserContactDets.PhoneNumber,
                                                PostalAddress = objUserContactDets.PostalAddress,
                                                EmailAddress = objUserContactDets.EmailAddress,
+                                               DeviceId = (Int32?)g.Select(x => x.DeviceId).FirstOrDefault(),
                                                //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
                                                //    UpdatedDateTime=objUserLoginDets.UpdatedDateTime
                                            }).ToList();

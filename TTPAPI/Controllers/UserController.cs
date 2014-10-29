@@ -12,8 +12,9 @@ namespace TTPAPI.Controllers
 {
     public class UserController : ApiController
     {
-        //   AddUsersData - Http POST Mehtod - Url : api/User?Token=0f8fad5b-d9cb-469f-a165-70867728950e
-        [System.Web.Http.HttpPost]
+        //   AddUsersData - Http POST Mehtod - Url : api/User/PostAddUsersData?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("PostAddUsersData")]
         public HttpResponseMessage AddUsersData(UserCreate objUser, string Token)
         {
             string strJson = string.Empty;
@@ -27,6 +28,7 @@ namespace TTPAPI.Controllers
                     objUserManagement.UserId = id.ToString();
                     objUserManagement.UserName = objUser.UserName;
                     objUserManagement.AccountID = objUser.AccountID;
+                    objUserManagement.RoleId = objUser.RoleId;
                     objUserManagement.CreatedDateTime = DateTime.Now;
                     DB.UserManagements.InsertOnSubmit(objUserManagement);
                     DB.SubmitChanges();
@@ -59,8 +61,9 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetRoleInformation - Http POST Mehtod - Url : api/User?UserId=1
-        [System.Web.Http.HttpGet]
+        //   GetRoleInformation - Http GET Mehtod - Url : api/User/GetRoleInformation?UserId=9968cc9a-1616-46c4-8a37-80d1b0f630f3
+        [HttpGet]
+        [ActionName("GetRoleInformation")]
         public HttpResponseMessage GetRoleInformation(string UserId)
         {
             string strJson = string.Empty;
@@ -71,7 +74,8 @@ namespace TTPAPI.Controllers
                 {
                     var RoleInformation = (from objUserManagements in DB.UserManagements
                                            join objUserContactDets in DB.UserContactDets on objUserManagements.UserId equals objUserContactDets.UserId
-                                           //join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
+                                           join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserManagements.UserId equals objUserDeviceMapDets.UserId into g
+                                         //  join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
                                            where objUserManagements.UserId == UserId
                                            select new
                                            {
@@ -82,8 +86,9 @@ namespace TTPAPI.Controllers
                                                PhoneNumber = objUserContactDets.PhoneNumber,
                                                PostalAddress = objUserContactDets.PostalAddress,
                                                EmailAddress = objUserContactDets.EmailAddress,
-                                               //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
-                                               //    UpdatedDateTime=objUserLoginDets.UpdatedDateTime
+                                               DeviceId =(Int32?)g.Select(x=>x.DeviceId).FirstOrDefault(),
+                                              //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
+                                               //   UpdatedDateTime=objUserLoginDets.UpdatedDateTime
                                            }).ToList();
                     if (RoleInformation != null)
                     {

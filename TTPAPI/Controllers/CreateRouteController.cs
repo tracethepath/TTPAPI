@@ -11,8 +11,9 @@ namespace TTPAPI.Controllers
 {
     public class CreateRouteController : ApiController
     {
-        //   AddRouteInformationData - Http POST Mehtod - Url : api/CreateRoute?Token=1f8fad5b-d9cb-469f-a165-70867728950e
-        [System.Web.Http.HttpPost]
+        //   AddRouteInformationData - Http POST Mehtod - Url : api/CreateRoute/PostAddRouteInformationData?Token=1f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("PostAddRouteInformationData")]
         public HttpResponseMessage AddRouteInformationData(RouteConfigMaster objRouteConfigMaster, string Token)
         {
             string strJson = string.Empty;
@@ -22,10 +23,10 @@ namespace TTPAPI.Controllers
                 using (TTPAPIDataContext DB = new TTPAPIDataContext())
                 {
                     RouteConfigMaster objrouteMaster = new RouteConfigMaster();
-                    objrouteMaster.AccountId = Token.Substring(0, 1);
+                    objrouteMaster.AccountId = Token.Substring(0, 37);
                     objrouteMaster.RouteDesc = objRouteConfigMaster.RouteDesc;
                     objrouteMaster.RouteName = objRouteConfigMaster.RouteName;
-                    objrouteMaster.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 15), DateTime.Now.ToString());
+                    objrouteMaster.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToLongDateString());
                     objrouteMaster.CreatedDateTime = DateTime.Now;
                     DB.RouteConfigMasters.InsertOnSubmit(objrouteMaster);
                     DB.SubmitChanges();

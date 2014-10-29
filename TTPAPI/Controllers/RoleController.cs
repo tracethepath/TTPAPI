@@ -12,8 +12,9 @@ namespace TTPAPI.Controllers
 {
     public class RoleController : ApiController
     {
-        //   AddRolesData - Http POST Mehtod - Url : api/Role?Token=0f8fad5b-d9cb-469f-a165-70867728950e
-        [System.Web.Http.HttpPost]
+        //   AddRolesData - Http POST Mehtod - Url : api/Role/AddRolesData?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("PostAddRolesData")]
         public HttpResponseMessage AddRolesData(RoleMaster objRole, string Token)
         {
             string strJson = string.Empty;
@@ -26,11 +27,11 @@ namespace TTPAPI.Controllers
                     objRoleMaster.RoleName = objRole.RoleName;
                     objRoleMaster.RoleDesc = objRole.RoleDesc;
                     objRoleMaster.CreatedDateTime = DateTime.Now;
-                    objRoleMaster.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 15), DateTime.Now.ToString());
+                    objRoleMaster.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToLongDateString());
                     DB.RoleMasters.InsertOnSubmit(objRoleMaster);
                     DB.SubmitChanges();
 
-                    strJson = "{\"Result\":\"204\"}";
+                    strJson = "{\"Result\":\"" + objRoleMaster.RoleId + "\"}";
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
@@ -43,8 +44,9 @@ namespace TTPAPI.Controllers
             }
         }
 
-        //   GetRoleInformation - Http POST Mehtod - Url : api/Role?RoleID=1
-        [System.Web.Http.HttpGet]
+        //   GetRoleInformation - Http GET Mehtod - Url : api/Role/GetRoleInformation?RoleID=1
+        [HttpGet]
+        [ActionName("GetRoleInformation")]
         public HttpResponseMessage GetRoleInformation(long RoleID)
         {
             string strJson = string.Empty;
@@ -55,17 +57,19 @@ namespace TTPAPI.Controllers
                 {
                     var RoleInformation = (from objUserManagements in DB.UserManagements
                                            join objUserContactDets in DB.UserContactDets on objUserManagements.UserId equals objUserContactDets.UserId
-                                          //join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
+                                          // join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserManagements.UserId equals objUserDeviceMapDets.UserId into g
+                                           //join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
                                            where objUserManagements.RoleId == RoleID
                                            select new
                                            {
                                               UserId= objUserManagements.UserId,
                                               UserName=objUserManagements.UserName,
                                               RoleId=objUserManagements.RoleId,
-                                             AccountID= objUserManagements.AccountID,
-                                             PhoneNumber= objUserContactDets.PhoneNumber,
-                                            PostalAddress= objUserContactDets.PostalAddress,
-                                           EmailAddress= objUserContactDets.EmailAddress,
+                                              AccountID= objUserManagements.AccountID,
+                                              PhoneNumber= objUserContactDets.PhoneNumber,
+                                              PostalAddress= objUserContactDets.PostalAddress,
+                                              EmailAddress= objUserContactDets.EmailAddress,
+                                           //   DeviceId = (Int32?)g.Select(x => x.DeviceId).FirstOrDefault(),
                                        //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
                                           //    UpdatedDateTime=objUserLoginDets.UpdatedDateTime
                                            }).ToList();
@@ -89,8 +93,9 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetRolewiseUserInformation - Http POST Mehtod - Url : api/Role?Token=0f8fad5b-d9cb-469f-a165-70867728950e&Appkey=0&RoleID=1
-        [System.Web.Http.HttpGet]
+        //   GetRolewiseUserInformation - Http POST Mehtod - Url : api/Role/GetRolewiseUserInformation?Token=0f8fad5b-d9cb-469f-a165-70867728950e&Appkey=0&RoleID=1
+        [HttpGet]
+        [ActionName("GetRolewiseUserInformation")]
         public HttpResponseMessage GetRolewiseUserInformation(string Token, string Appkey, long RoleID)
         {
             string strJson = string.Empty;

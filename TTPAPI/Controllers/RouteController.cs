@@ -12,8 +12,9 @@ namespace TTPAPI.Controllers
 {
     public class RouteController : ApiController
     {
-        //   AddRouteData - Http POST Mehtod - Url : api/Route?Token=0f8fad5b-d9cb-469f-a165-70867728950e
-        [System.Web.Http.HttpPost]
+        //   AddRouteData - Http POST Mehtod - Url : api/Route/PostAddRouteData?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("PostAddRouteData")]
         public HttpResponseMessage AddRouteData(Route objRouteDetail, string Token)
         {
             string strJson = string.Empty;
@@ -44,8 +45,9 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetLocation - Http POST Mehtod - Url : api/Route?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AccountId=1
-        [System.Web.Http.HttpGet]
+        //   GetLocation - Http GET Mehtod - Url : api/Route/GetLoction?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AccountId=1
+        [HttpGet]
+        [ActionName("GetLoction")]
         public HttpResponseMessage GetLoction(string Token, string AccountId)
         {
             string strJson = string.Empty;
@@ -75,8 +77,9 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetLocationwithlatandlong - Http POST Mehtod - Url : api/Route?Token=0f8fad5b-d9cb-469f-a165-70867728950e&RouteId=123
-        [System.Web.Http.HttpGet]
+        //   GetLocationwithlatandlong - Http GET Mehtod - Url : api/Route/GetLocationwithlatandlong?Token=0f8fad5b-d9cb-469f-a165-70867728950e&RouteId=123
+        [HttpGet]
+        [ActionName("GetLocationwithlatandlong")]
         public HttpResponseMessage GetLocationwithlatandlong(string Token, long RouteId)
         {
             string strJson = string.Empty;
