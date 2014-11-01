@@ -92,10 +92,10 @@
         <elementListCompartment Id="6d464cc0-bde8-478e-b6f8-f874c49c7b31" absoluteBounds="0.89000000000000012, 4.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c861d632-5c16-4f15-be3a-cf72d1cf43bb" absoluteBounds="6.125, 2.75, 2, 1.3862939453125">
+    <classShape Id="c861d632-5c16-4f15-be3a-cf72d1cf43bb" absoluteBounds="5.375, 2.625, 2, 1.3862939453125">
       <DataClassMoniker Name="/TTPAPIDataContext/AccessTokenCache" />
       <nestedChildShapes>
-        <elementListCompartment Id="d9f5f2a5-fde2-42e3-8024-0337c67b621b" absoluteBounds="6.14, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d9f5f2a5-fde2-42e3-8024-0337c67b621b" absoluteBounds="5.39, 3.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

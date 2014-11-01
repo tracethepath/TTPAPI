@@ -2715,8 +2715,8 @@ namespace TTPAPI.Models
 		public AccessTokenCache()
 		{
 		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+
+        [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_UserId", DbType = "NVarChar(50) NOT NULL", CanBeNull = false, IsPrimaryKey = true)]
 		public string UserId
 		{
 			get
