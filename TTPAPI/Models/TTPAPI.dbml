@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="TTPAPI" Class="TTPAPIDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=NAROLA\SQLEXPRESS;Initial Catalog=TTPAPI;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="TTPAPIConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.AccountManagemet" Member="AccountManagemets">
     <Type Name="AccountManagemet">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -141,7 +140,7 @@
   </Table>
   <Table Name="dbo.AccessTokenCache" Member="AccessTokenCaches">
     <Type Name="AccessTokenCache">
-      <Column Name="UserId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Token" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="LastAccessDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
