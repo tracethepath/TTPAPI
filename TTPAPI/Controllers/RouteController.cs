@@ -12,29 +12,40 @@ namespace TTPAPI.Controllers
 {
     public class RouteController : ApiController
     {
-        //   AddRouteData - Http POST Mehtod - Url : api/Route/PostAddRouteData?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        //   AddRouteData - Http POST Mehtod - Url : api/Route/CreateRouteData?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0
         [HttpPost]
-        [ActionName("PostAddRouteData")]
-        public HttpResponseMessage AddRouteData(Route objRouteDetail, string Token)
+        [ActionName("CreateRouteData")]
+        public HttpResponseMessage AddRouteData(Route objRouteDetail, string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                Accountmeg objaccountmegment = new Accountmeg();
+                string result = objaccountmegment.Getresult(AppKey, Token);
+                if (result == "true")
                 {
-                foreach (var route in objRouteDetail.RouteDetail)
-                {
-                    RouteDetail objroute = new RouteDetail();
-                    objroute.RouteId = objRouteDetail.routeId;
-                    objroute.SeqNo = route.SeqNo;
-                    objroute.Lat = route.Lat;
-                    objroute.Long = route.Long;
-                    DB.RouteDetails.InsertOnSubmit(objroute);
-                    DB.SubmitChanges();
+                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                    {
+                        foreach (var route in objRouteDetail.RouteDetail)
+                        {
+                            RouteDetail objroute = new RouteDetail();
+                            objroute.RouteId = objRouteDetail.routeId;
+                            objroute.SeqNo = route.SeqNo;
+                            objroute.Lat = route.Lat;
+                            objroute.Long = route.Long;
+                            DB.RouteDetails.InsertOnSubmit(objroute);
+                            DB.SubmitChanges();
+                        }
+                        strJson = "{\"Result\":\"204\"}";
+                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                        return response;
+                    }
                 }
-                strJson = "{\"Result\":\"204\"}";
-                response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                else
+                {
+                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
             }
@@ -45,29 +56,41 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetLocation - Http GET Mehtod - Url : api/Route/GetLoction?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AccountId=1
+        //   GetLocation - Http GET Mehtod - Url : api/Route/LoctionByAccountId?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&AccountId=1
         [HttpGet]
-        [ActionName("GetLoction")]
-        public HttpResponseMessage GetLoction(string Token, string AccountId)
+        [ActionName("LoctionByAccountId")]
+        public HttpResponseMessage GetLoction(string Token, string AppKey, string AccountId)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                Accountmeg objaccountmegment = new Accountmeg();
+                string result = objaccountmegment.Getresult(AppKey, Token);
+                if (result == "true")
                 {
-                    var GetLocationInfo = DB.RouteConfigMasters.FirstOrDefault(x => x.AccountId == AccountId);
-                    if (GetLocationInfo != null)
+                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        response.Content = new StringContent(JsonConvert.SerializeObject(GetLocationInfo), Encoding.UTF8, "application/json");
-                        return response;
+                        var GetLocationInfo = DB.RouteConfigMasters.Where(x => x.AccountId == AccountId).ToList();
+                        if (GetLocationInfo != null)
+                        {
+                            response.Content = new StringContent(JsonConvert.SerializeObject(GetLocationInfo), Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                        else
+                        {
+                            strJson = "{\"Result\":\"100\"}";
+                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                            return response;
+                        }
                     }
-                    else
-                    {
-                        strJson = "{\"Result\":\"100\"}";
-                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                        return response;
-                    }
+
+                }
+                else
+                {
+                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                    return response;
                 }
             }
             catch (Exception ex)
@@ -77,33 +100,45 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetLocationwithlatandlong - Http GET Mehtod - Url : api/Route/GetLocationwithlatandlong?Token=0f8fad5b-d9cb-469f-a165-70867728950e&RouteId=123
+        //   GetLocationwithlatandlong - Http GET Mehtod - Url : api/Route/PlannedRouteDetails?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&RouteId=123
         [HttpGet]
-        [ActionName("GetLocationwithlatandlong")]
-        public HttpResponseMessage GetLocationwithlatandlong(string Token, long RouteId)
+        [ActionName("PlannedRouteDetails")]
+        public HttpResponseMessage GetPlannedRouteDetail(string Token, string AppKey, long RouteId)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
             try
             {
-                using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                Accountmeg objaccountmegment = new Accountmeg();
+                string result = objaccountmegment.Getresult(AppKey, Token);
+                if (result == "true")
                 {
-                    var GetLocationInfo = DB.RouteDetails.FirstOrDefault(x => x.RouteId == RouteId);
-                    var get = (from n in DB.RouteDetails
-                               where n.RouteId == RouteId
-                               select new
-                               {
-                                   SeqNo = n.SeqNo,
-                                   Lat = n.Lat,
-                                   Long = n.Long,
-                               }).ToList();
-                    if (GetLocationInfo != null)
+                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        response.Content = new StringContent("{\"RouteID\":" +
-                                                                 JsonConvert.SerializeObject(GetLocationInfo.RouteId) + "," + "\"RouteDetails\":" + JsonConvert.SerializeObject(get) + "}", Encoding.UTF8, "application/json");
+                        var GetLocationInfo = DB.RouteDetails.FirstOrDefault(x => x.RouteId == RouteId);
+                        var get = (from n in DB.RouteDetails
+                                   where n.RouteId == RouteId
+                                   select new
+                                   {
+                                       SeqNo = n.SeqNo,
+                                       Lat = n.Lat,
+                                       Long = n.Long,
+                                   }).ToList();
+                        if (GetLocationInfo != null)
+                        {
+                            response.Content = new StringContent("{\"RouteID\":" +
+                                                                     JsonConvert.SerializeObject(GetLocationInfo.RouteId) + "," + "\"RouteDetails\":" + JsonConvert.SerializeObject(get) + "}", Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                        strJson = "{\"Result\":\"100\"}";
+                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                         return response;
                     }
-                    strJson = "{\"Result\":\"100\"}";
+
+                }
+                else
+                {
+                    strJson = "{\"Result\":\"Invalide AppKey\"}";
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }

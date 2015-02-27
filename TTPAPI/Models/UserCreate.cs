@@ -15,6 +15,7 @@ namespace TTPAPI.Models
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string PreferredAlert { get; set; }
         public string LastLoginDateTime { get; set; }
         public string Password { get; set; }
     }

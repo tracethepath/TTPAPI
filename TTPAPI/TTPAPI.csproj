@@ -128,6 +128,8 @@
     <Compile Include="Controllers\CreateRouteController.cs" />
     <Compile Include="Controllers\DeviceDetailController.cs" />
     <Compile Include="Controllers\DeviceTypeController.cs" />
+    <Compile Include="Controllers\ForgetPasswordController.cs" />
+    <Compile Include="Controllers\GetUserDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
@@ -140,9 +142,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Accountmeg.cs" />
     <Compile Include="Models\MessageHandler.cs" />
     <Compile Include="Models\Route.cs" />
-    <Compile Include="Models\Test.cs" />
     <Compile Include="Models\TTPAPI.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

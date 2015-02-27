@@ -1031,7 +1031,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 
 	_getParentOffset: function() {
 
-		//Get the offsetParent and cache its position
+		// the offsetParent and cache its position
 		this.offsetParent = this.helper.offsetParent();
 		var po = this.offsetParent.offset();
 
@@ -2915,7 +2915,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		this.containerCache = {};
 		this.element.addClass("ui-sortable");
 
-		//Get the items
+		// the items
 		this.refresh();
 
 		//Let's determine if the items are being displayed horizontally
@@ -3013,7 +3013,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		//Cache the margins of the original element
 		this._cacheMargins();
 
-		//Get the next scrolling parent
+		// the next scrolling parent
 		this.scrollParent = this.helper.scrollParent();
 
 		//The element's absolute position on the page minus margins
@@ -3670,7 +3670,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 	_getParentOffset: function() {
 
 
-		//Get the offsetParent and cache its position
+		// the offsetParent and cache its position
 		this.offsetParent = this.helper.offsetParent();
 		var po = this.offsetParent.offset();
 
@@ -7191,7 +7191,7 @@ $.extend(Datepicker.prototype, {
 			keypress(this._doKeyPress).keyup(this._doKeyUp).
 			bind("setData.datepicker", function(event, key, value) {
 				inst.settings[key] = value;
-			}).bind("getData.datepicker", function(event, key) {
+			}).bind(Data.datepicker", function(event, key) {
 				return this._get(inst, key);
 			});
 		this._autoSize(inst);
@@ -7275,7 +7275,7 @@ $.extend(Datepicker.prototype, {
 		divSpan.addClass(this.markerClassName).append(inst.dpDiv).
 			bind("setData.datepicker", function(event, key, value){
 				inst.settings[key] = value;
-			}).bind("getData.datepicker", function(event, key){
+			}).bind(Data.datepicker", function(event, key){
 				return this._get(inst, key);
 			});
 		$.data(target, PROP_NAME, inst);

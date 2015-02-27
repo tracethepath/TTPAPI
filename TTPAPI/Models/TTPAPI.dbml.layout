@@ -1,13 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12, 12.125" name="TTPAPI">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 12.125" name="TTPAPI">
   <DataContextMoniker Name="/TTPAPIDataContext" />
   <nestedChildShapes>
-    <classShape Id="a0900e87-fd9d-4a8a-8dd2-83436d90abfc" absoluteBounds="0.75, 0.75, 2, 1.9631982421875">
-      <DataClassMoniker Name="/TTPAPIDataContext/AccountManagemet" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7269dc56-8bad-40b9-940c-9d4f736eb333" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="72d47f9f-432b-46f5-9280-53d4fe86a987" absoluteBounds="3.75, 0.75, 2, 1.7708968098958331">
       <DataClassMoniker Name="/TTPAPIDataContext/DeviceCurrentLocation" />
       <nestedChildShapes>
@@ -50,22 +44,10 @@
         <elementListCompartment Id="9e4337d9-551e-437e-baf4-eb1bc68460a0" absoluteBounds="6.765, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e23bb08e-61bb-45fd-b505-b5a39170b78d" absoluteBounds="9.75, 0.75, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/TTPAPIDataContext/UserContactDet" />
-      <nestedChildShapes>
-        <elementListCompartment Id="499951d8-b938-47be-b92e-f5644754ee23" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="cefceb87-6385-4fbb-b919-27fd4397b480" absoluteBounds="0.75, 9.75, 2, 1.9631982421874987">
       <DataClassMoniker Name="/TTPAPIDataContext/UserDeviceMapDet" />
       <nestedChildShapes>
         <elementListCompartment Id="86f316d5-66a2-4f91-9760-548f29f2b61c" absoluteBounds="0.765, 10.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="da5507b7-4d1e-4509-b68f-d2eae431ce96" absoluteBounds="9.75, 3.75, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/TTPAPIDataContext/UserLoginDet" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ca85320f-e7ce-4779-a3c4-a648a20001c0" absoluteBounds="9.765, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="2ec1f738-1fbe-44a6-a800-3c617a1a37fa" absoluteBounds="3.75, 9.75, 2, 1.9631982421874987">
@@ -92,10 +74,34 @@
         <elementListCompartment Id="6d464cc0-bde8-478e-b6f8-f874c49c7b31" absoluteBounds="0.89000000000000012, 4.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c861d632-5c16-4f15-be3a-cf72d1cf43bb" absoluteBounds="5.375, 2.625, 2, 1.3862939453125">
+    <classShape Id="ea320cd7-418a-42c9-8102-914ba2552d1f" absoluteBounds="8.875, 2.75, 2, 1.3862939453124996">
       <DataClassMoniker Name="/TTPAPIDataContext/AccessTokenCache" />
       <nestedChildShapes>
-        <elementListCompartment Id="d9f5f2a5-fde2-42e3-8024-0337c67b621b" absoluteBounds="5.39, 3.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="abc714e1-17a2-4b0b-8ebb-d0298c3cd26b" absoluteBounds="8.89, 3.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="74a7bf56-a577-456c-9250-585418991f44" absoluteBounds="12.25, 5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TTPAPIDataContext/AccessAppKey" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d25d2cc-9d48-4b7f-a2cb-4541115d63b2" absoluteBounds="12.265, 5.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c85d8cc0-a4ca-4c3e-9f36-04005882e699" absoluteBounds="4.125, 3.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/TTPAPIDataContext/UserContactDet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="429d26e2-00af-4ae1-aae7-7da8e3a23c84" absoluteBounds="4.14, 3.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="644cb073-5a7d-4136-891c-fd27b45e4041" absoluteBounds="10.125, 1.25, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/TTPAPIDataContext/UserLoginDet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0aca6366-854c-4b99-b4e9-41d5234b000a" absoluteBounds="10.14, 1.71, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8e8bf501-9299-4abf-bedd-e751a0ac78ee" absoluteBounds="1.125, 1, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/TTPAPIDataContext/AccountManagemet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f13fbac-d144-49d0-a7e7-e2cce331e958" absoluteBounds="1.1400000000000001, 1.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -14,12 +14,12 @@ namespace TTPAPI.Controllers
 {
     public class LoginController : ApiController
     {
-        //   AddMapMaster - Http GET Mehtod - Url : api/Login/GetLogin?Email=bhavesh@gmail.com&Password=xyz11234
+        //   AddMapMaster - Http GET Mehtod - Url : api/Login/Login?Email=tracethepath@g.com&Password=pwd&AppKey=FB225515-BD1B-4753-93AE-34328C81D0F0
         [HttpGet]
-        [ActionName("GetLogin")]
-        public HttpResponseMessage GetLogin(string Email, string Password)
+        [ActionName("Login")]
+        public HttpResponseMessage GetLogin(string Email, string Password, Guid AppKey)
         {
-            
+
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
             try
@@ -27,25 +27,40 @@ namespace TTPAPI.Controllers
                 using (TTPAPIDataContext DB = new TTPAPIDataContext())
                 {
                     //  UserManagement objuser = new UserManagement();
+                    // var appKeycheck = DB.AccessAppKeys.Where(x => x.AppKey == AppKey).FirstOrDefault();
+
                     var logininformation = (from objUserContactDets in DB.UserContactDets
                                             join objUserLoginDet in DB.UserLoginDets on objUserContactDets.UserId equals objUserLoginDet.UserId
                                             join objUserManagement in DB.UserManagements on objUserContactDets.UserId equals objUserManagement.UserId
-                                            where objUserContactDets.EmailAddress == Email && objUserLoginDet.Password == Password
+                                            join objaccount in DB.AccountManagemets on objUserManagement.AccountID equals objaccount.AccountID
+                                            where objUserContactDets.EmailAddress == Email && objUserLoginDet.Password == Password && objaccount.AppKey == AppKey
                                             select new
                                             {
-                                                UserId=objUserManagement.UserId,
-                                              Token =  String.Format("{0}{1}{2}", objUserManagement.UserId.ToString(),Convert.ToString(objUserManagement.AccountID),Convert.ToString(objUserManagement.RoleId)),
+                                                UserId = objUserManagement.UserId,
+                                                Token = String.Format("{0}{1}{2}{3}",Guid.NewGuid(), objUserManagement.UserId.ToString(), Convert.ToString(objUserManagement.AccountID), Convert.ToString(objUserManagement.RoleId)),
                                             }).FirstOrDefault();
-                    AccessTokenCache objAccessTokenCache = new AccessTokenCache();
-                    objAccessTokenCache.UserId = logininformation.UserId;
-                    objAccessTokenCache.Token = logininformation.Token;
-                    objAccessTokenCache.LastAccessDateTime = DateTime.Now;
-                    DB.AccessTokenCaches.InsertOnSubmit(objAccessTokenCache);
-                    DB.SubmitChanges();
-
-                    strJson = "{\"Token\":\"" + logininformation.Token + "\"}";
-                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                    return response;
+                    if (logininformation != null)
+                    {
+                        AccessTokenCache objAccessTokenCache = new AccessTokenCache();
+                        var checkappkey = DB.AccessTokenCaches.Where(x => x.Token == logininformation.Token).FirstOrDefault();
+                        if (checkappkey == null)
+                        {
+                            objAccessTokenCache.UserId = logininformation.UserId;
+                            objAccessTokenCache.Token = logininformation.Token;
+                            objAccessTokenCache.LastAccessDateTime = DateTime.Now;
+                            DB.AccessTokenCaches.InsertOnSubmit(objAccessTokenCache);
+                            DB.SubmitChanges();
+                        }
+                        strJson = "{\"Token\":\"" + logininformation.Token + "\"}";
+                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                        return response;
+                    }
+                    else
+                    {
+                        strJson = "{\"Result\":\"Invalide AppKey\"}";
+                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                        return response;
+                    }
                 }
             }
             catch (Exception ex)
