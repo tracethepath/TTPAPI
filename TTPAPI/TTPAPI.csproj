@@ -125,6 +125,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountManagemetController.cs" />
+    <Compile Include="Controllers\AddAppKeyController.cs" />
     <Compile Include="Controllers\CreateRouteController.cs" />
     <Compile Include="Controllers\DeviceDetailController.cs" />
     <Compile Include="Controllers\DeviceTypeController.cs" />
@@ -136,15 +137,21 @@
     <Compile Include="Controllers\MapMasterController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
+    <Compile Include="Controllers\StudentInfoController.cs" />
+    <Compile Include="Controllers\TrackeInfoController.cs" />
+    <Compile Include="Controllers\TrackInfoController.cs" />
     <Compile Include="Controllers\UserAssociationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VehicleInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Accountmeg.cs" />
     <Compile Include="Models\MessageHandler.cs" />
     <Compile Include="Models\Route.cs" />
+    <Compile Include="Models\StudentList.cs" />
     <Compile Include="Models\TTPAPI.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

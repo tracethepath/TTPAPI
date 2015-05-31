@@ -14,7 +14,7 @@ namespace TTPAPI.Controllers
 {
     public class LoginController : ApiController
     {
-        //   AddMapMaster - Http GET Mehtod - Url : api/Login/Login?Email=tracethepath@g.com&Password=pwd&AppKey=FB225515-BD1B-4753-93AE-34328C81D0F0
+        //   AddMapMaster - Http GET Mehtod - Url : api/Login/Login?Email=bhavesh@gmail.com&Password=xyz1234&AppKey=DC3C4A0E-B046-4BA0-8253-DAB7912519BD
         [HttpGet]
         [ActionName("Login")]
         public HttpResponseMessage GetLogin(string Email, string Password, Guid AppKey)
@@ -37,7 +37,7 @@ namespace TTPAPI.Controllers
                                             select new
                                             {
                                                 UserId = objUserManagement.UserId,
-                                                Token = String.Format("{0}{1}{2}{3}",Guid.NewGuid(), objUserManagement.UserId.ToString(), Convert.ToString(objUserManagement.AccountID), Convert.ToString(objUserManagement.RoleId)),
+                                                Token = String.Format("{0}{1}{2}", objUserManagement.UserId.ToString(), Convert.ToString(objUserManagement.AccountID), Convert.ToString(objUserManagement.RoleId)),
                                             }).FirstOrDefault();
                     if (logininformation != null)
                     {

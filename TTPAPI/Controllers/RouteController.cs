@@ -71,7 +71,18 @@ namespace TTPAPI.Controllers
                 {
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        var GetLocationInfo = DB.RouteConfigMasters.Where(x => x.AccountId == AccountId).ToList();
+                        var GetLocationInfo = (from objvehical in DB.VehicleMasters
+                                               join objvehicalconfig in DB.VehicleDeviceMapDets on objvehical.VehicleID equals objvehicalconfig.vehicleId
+                                               join objdeviceinfo in DB.DeviceLocationHistories on objvehicalconfig.DeviceId equals objdeviceinfo.DeviceId
+                                               where objvehical.AccountId == AccountId
+                                               select new
+                                               {
+                                                   VehicleID = objvehical.VehicleID,
+                                                   VehicleRegNo = objvehical.VehicleRegNo,
+                                                   Lat = objdeviceinfo.Lat.LastOrDefault(),
+                                                   Long = objdeviceinfo.Long.LastOrDefault()
+
+                                               }).ToList();
                         if (GetLocationInfo != null)
                         {
                             response.Content = new StringContent(JsonConvert.SerializeObject(GetLocationInfo), Encoding.UTF8, "application/json");

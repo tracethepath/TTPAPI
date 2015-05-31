@@ -129,7 +129,8 @@ namespace TTPAPI.Controllers
                     {
                         var UserInformation = (from objUserManagements in DB.UserManagements
                                                join objUserContactDets in DB.UserContactDets on objUserManagements.UserId equals objUserContactDets.UserId
-                                               join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserManagements.UserId equals objUserDeviceMapDets.UserId into g
+                                               join objvehicalmaster in DB.VehicleMasters on objUserManagements.AccountID equals objvehicalmaster.AccountId
+                                               join objUserDeviceMapDets in DB.VehicleDeviceMapDets on objvehicalmaster.VehicleID equals objUserDeviceMapDets.vehicleId into g
                                                //join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserName equals objUserLoginDets.UserId
                                                where objUserManagements.AccountID == AccountId
                                                select new

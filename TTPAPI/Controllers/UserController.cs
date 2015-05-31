@@ -80,7 +80,8 @@ namespace TTPAPI.Controllers
                     {
                         var RoleInformation = (from objUserManagements in DB.UserManagements
                                                join objUserContactDets in DB.UserContactDets on objUserManagements.UserId equals objUserContactDets.UserId
-                                               join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserManagements.UserId equals objUserDeviceMapDets.UserId into g
+                                               join objvehicalmaster in DB.VehicleMasters on objUserManagements.AccountID equals objvehicalmaster.AccountId
+                                               join objUserDeviceMapDets in DB.VehicleDeviceMapDets on objvehicalmaster.VehicleID equals objUserDeviceMapDets.vehicleId into g
                                                join objUserLoginDets in DB.UserLoginDets on objUserManagements.UserId equals objUserLoginDets.UserId
                                                where objUserManagements.UserId == UserId
                                                select new
@@ -194,6 +195,50 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
+
+        //   AddUsersData - Http POST Mehtod - Url : api/User/MapUserVehicleDet ?Token=0f8fad5b-d9cb-469f-a165-70867728950e
+        [HttpPost]
+        [ActionName("MapUserVehicleDet")]
+        public HttpResponseMessage MapUserVehicleDet(UservehicleMapDet objUserVehicleMapDet, string Token, string AppKey)
+        {
+            string strJson = string.Empty;
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                Accountmeg objaccountmegment = new Accountmeg();
+                string result = objaccountmegment.Getresult(AppKey, Token);
+                if (result == "true")
+                {
+                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                    {
+                        UservehicleMapDet objUserVehicleMap = new UservehicleMapDet();
+                        objUserVehicleMap.UserId = objUserVehicleMapDet.UserId;
+                        objUserVehicleMap.vehicleId = objUserVehicleMapDet.vehicleId;
+
+                        DB.UservehicleMapDets.InsertOnSubmit(objUserVehicleMap);
+                        DB.SubmitChanges();
+
+                        strJson = "{\"Result\":\"204\"}";
+                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                        return response;
+                    }
+
+                }
+                else
+                {
+                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                strJson = "{\"Result\":\"" + ex.Message + "\"}";
+                response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
 
     }
 }

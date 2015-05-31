@@ -109,115 +109,115 @@ namespace TTPAPI.Controllers
         }
 
         //   GetLocationsbyUser - Http GET Mehtod - Url : api/Location/LocationHistorybyUserID?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&UserId=12345678
-        [HttpGet]
-        [ActionName("LocationHistorybyUserID")]
-        public HttpResponseMessage GetLocationsbyUser(string Token, string AppKey, string UserId)
-        {
-            string strJson = string.Empty;
-            var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            try
-            {
-                Accountmeg objaccountmegment = new Accountmeg();
-                string result = objaccountmegment.Getresult(AppKey, Token);
-                if (result == "true")
-                {
-                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
-                    {
-                        var LocationByUser = (from objUserDevicMap in DB.UserDeviceMapDets
-                                              join objdeviceHistories in DB.DeviceLocationHistories on objUserDevicMap.DeviceId equals objdeviceHistories.DeviceId
-                                              where objUserDevicMap.UserId == UserId
-                                              select new
-                                              {
-                                                  Id = objdeviceHistories._id,
-                                                  DeviceId = objdeviceHistories.DeviceId,
-                                                  Lat = objdeviceHistories.Lat,
-                                                  Long = objdeviceHistories.Long,
-                                                  Typeofnetwork = objdeviceHistories.Typeofnetwork,
-                                              }).ToList();
+       // [HttpGet]
+       // [ActionName("LocationHistorybyUserID")]
+        //public HttpResponseMessage GetLocationsbyUser(string Token, string AppKey, string UserId)
+        //{
+        //    string strJson = string.Empty;
+        //    var response = this.Request.CreateResponse(HttpStatusCode.OK);
+        //    try
+        //    {
+        //        Accountmeg objaccountmegment = new Accountmeg();
+        //        string result = objaccountmegment.Getresult(AppKey, Token);
+        //        if (result == "true")
+        //        {
+        //            using (TTPAPIDataContext DB = new TTPAPIDataContext())
+        //            {
+        //                var LocationByUser = (from objUserDevicMap in DB.VehicleDeviceMapDets
+        //                                      join objdeviceHistories in DB.DeviceLocationHistories on objUserDevicMap.DeviceId equals objdeviceHistories.DeviceId
+        //                                      where objUserDevicMap.UserId == UserId
+        //                                      select new
+        //                                      {
+        //                                          Id = objdeviceHistories._id,
+        //                                          DeviceId = objdeviceHistories.DeviceId,
+        //                                          Lat = objdeviceHistories.Lat,
+        //                                          Long = objdeviceHistories.Long,
+        //                                          Typeofnetwork = objdeviceHistories.Typeofnetwork,
+        //                                      }).ToList();
 
-                        if (LocationByUser != null)
-                        {
-                            response.Content = new StringContent(JsonConvert.SerializeObject(LocationByUser), Encoding.UTF8, "application/json");
-                            return response;
-                        }
-                        else
-                        {
-                            strJson = "{\"Result\":\"100\"}";
-                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                            return response;
-                        }
-                    }
-                }
-                else
-                {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
-                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                    return response;
-                }
-            }
-            catch (Exception ex)
-            {
-                strJson = "{\"Result\":\"" + ex.Message + "\"}";
-                response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                return response;
-            }
-        }
+        //                if (LocationByUser != null)
+        //                {
+        //                    response.Content = new StringContent(JsonConvert.SerializeObject(LocationByUser), Encoding.UTF8, "application/json");
+        //                    return response;
+        //                }
+        //                else
+        //                {
+        //                    strJson = "{\"Result\":\"100\"}";
+        //                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //                    return response;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            strJson = "{\"Result\":\"Invalide AppKey\"}";
+        //            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //            return response;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        strJson = "{\"Result\":\"" + ex.Message + "\"}";
+        //        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //        return response;
+        //    }
+        //}
 
         //   GetLocationsbyRoute - Http GET Mehtod - Url : api/Location/LocationHistorybyRouteId?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&RouteId=1234
-        [HttpGet]
-        [ActionName("LocationHistorybyRouteId")]
-        public HttpResponseMessage GetLocationsbyRoute(string Token, string AppKey, string RouteId)
-        {
-            string strJson = string.Empty;
-            var response = this.Request.CreateResponse(HttpStatusCode.OK);
-            try
-            {
-                Accountmeg objaccountmegment = new Accountmeg();
-                string result = objaccountmegment.Getresult(AppKey, Token);
-                if (result == "true")
-                {
-                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
-                    {
-                        var LocationByUser = (from objUserRouteMapDets in DB.UserRouteMapDets
-                                              join objUserDeviceMapDets in DB.UserDeviceMapDets on objUserRouteMapDets.UserId equals objUserDeviceMapDets.UserId
-                                              join objdeviceHistories in DB.DeviceLocationHistories on objUserDeviceMapDets.DeviceId equals objdeviceHistories.DeviceId
-                                              where objUserRouteMapDets.RouteId == RouteId
-                                              select new
-                                              {
-                                                  Id = objdeviceHistories._id,
-                                                  DeviceId = objdeviceHistories.DeviceId,
-                                                  Lat = objdeviceHistories.Lat,
-                                                  Long = objdeviceHistories.Long,
-                                                  Typeofnetwork = objdeviceHistories.Typeofnetwork,
-                                              }).ToList();
+       // [HttpGet]
+       // [ActionName("LocationHistorybyRouteId")]
+        //public HttpResponseMessage GetLocationsbyRoute(string Token, string AppKey, string RouteId)
+        //{
+        //    string strJson = string.Empty;
+        //    var response = this.Request.CreateResponse(HttpStatusCode.OK);
+        //    try
+        //    {
+        //        Accountmeg objaccountmegment = new Accountmeg();
+        //        string result = objaccountmegment.Getresult(AppKey, Token);
+        //        if (result == "true")
+        //        {
+        //            using (TTPAPIDataContext DB = new TTPAPIDataContext())
+        //            {
+        //                var LocationByUser = (from objUserRouteMapDets in DB.UserRouteMapDets
+        //                                      join objUserDeviceMapDets in DB.VehicleDeviceMapDets on objUserRouteMapDets.UserId equals objUserDeviceMapDets.UserId
+        //                                      join objdeviceHistories in DB.DeviceLocationHistories on objUserDeviceMapDets.DeviceId equals objdeviceHistories.DeviceId
+        //                                      where objUserRouteMapDets.RouteId == RouteId
+        //                                      select new
+        //                                      {
+        //                                          Id = objdeviceHistories._id,
+        //                                          DeviceId = objdeviceHistories.DeviceId,
+        //                                          Lat = objdeviceHistories.Lat,
+        //                                          Long = objdeviceHistories.Long,
+        //                                          Typeofnetwork = objdeviceHistories.Typeofnetwork,
+        //                                      }).ToList();
 
-                        if (LocationByUser != null)
-                        {
-                            response.Content = new StringContent(JsonConvert.SerializeObject(LocationByUser), Encoding.UTF8, "application/json");
-                            return response;
-                        }
-                        else
-                        {
-                            strJson = "{\"Result\":\"100\"}";
-                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                            return response;
-                        }
-                    }
-                }
-                else
-                {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
-                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                    return response;
-                }
-            }
-            catch (Exception ex)
-            {
-                strJson = "{\"Result\":\"" + ex.Message + "\"}";
-                response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                return response;
-            }
-        }
+        //                if (LocationByUser != null)
+        //                {
+        //                    response.Content = new StringContent(JsonConvert.SerializeObject(LocationByUser), Encoding.UTF8, "application/json");
+        //                    return response;
+        //                }
+        //                else
+        //                {
+        //                    strJson = "{\"Result\":\"100\"}";
+        //                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //                    return response;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            strJson = "{\"Result\":\"Invalide AppKey\"}";
+        //            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //            return response;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        strJson = "{\"Result\":\"" + ex.Message + "\"}";
+        //        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+        //        return response;
+        //    }
+        //}
 
         //   GetLocationsbyRoute - Http GET Mehtod - Url : api/Location/CurrentLocation?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&DeviceId=1234
         [HttpGet]
