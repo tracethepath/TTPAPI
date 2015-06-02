@@ -56,12 +56,6 @@
         <elementListCompartment Id="49700b89-d461-4837-94d1-349ae042387a" absoluteBounds="6.765, 7.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="339fb6b9-b344-49cb-b3d4-80b6351ff6fc" absoluteBounds="9.75, 0.75, 2, 1.7708968098958329">
-      <DataClassMoniker Name="/TTPAPIDataContext/OutStudentTrack" />
-      <nestedChildShapes>
-        <elementListCompartment Id="ec33a67d-da7b-41dd-b9e2-c5daf1c40dae" absoluteBounds="9.765, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="14406fc8-14e4-455d-b311-14ceb87ddeeb" absoluteBounds="0.75, 9.75, 2, 1.7708968098958344">
       <DataClassMoniker Name="/TTPAPIDataContext/RoleMaster" />
       <nestedChildShapes>
@@ -144,6 +138,12 @@
       <DataClassMoniker Name="/TTPAPIDataContext/UservehicleMapDet" />
       <nestedChildShapes>
         <elementListCompartment Id="89532fab-e24b-4a11-b63e-7f78c8285081" absoluteBounds="5.515, 3.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b8377c97-3791-47ea-8f01-7d5362ea679a" absoluteBounds="10.375, 2.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TTPAPIDataContext/OutStudentTrack" />
+      <nestedChildShapes>
+        <elementListCompartment Id="14b2bb93-d7a8-43c4-9632-a08e475a7e20" absoluteBounds="10.39, 2.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -79,10 +79,10 @@ namespace TTPAPI.Controllers
                                                {
                                                    VehicleID = objvehical.VehicleID,
                                                    VehicleRegNo = objvehical.VehicleRegNo,
-                                                   Lat = objdeviceinfo.Lat.LastOrDefault(),
-                                                   Long = objdeviceinfo.Long.LastOrDefault()
+                                                   Lat = objdeviceinfo.Lat,
+                                                   Long = objdeviceinfo.Long,
 
-                                               }).ToList();
+                                               }).ToList().LastOrDefault();
                         if (GetLocationInfo != null)
                         {
                             response.Content = new StringContent(JsonConvert.SerializeObject(GetLocationInfo), Encoding.UTF8, "application/json");

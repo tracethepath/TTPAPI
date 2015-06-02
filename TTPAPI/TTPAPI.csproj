@@ -139,7 +139,6 @@
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\StudentInfoController.cs" />
     <Compile Include="Controllers\TrackeInfoController.cs" />
-    <Compile Include="Controllers\TrackInfoController.cs" />
     <Compile Include="Controllers\UserAssociationController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />

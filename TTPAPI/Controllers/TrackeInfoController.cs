@@ -60,7 +60,7 @@ namespace TTPAPI.Controllers
         //   TrackeIn - Http POST Mehtod - Url : api/TrackeInfo/TrackeOut?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
         [HttpPost]
         [ActionName("TrackeOut")]
-        public HttpResponseMessage TrackeIn(OutStudentTrack objOutStudentTrack, string Token, string AppKey)
+        public HttpResponseMessage TrackeOut(OutStudentTrack objOutStudentTrack, string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);

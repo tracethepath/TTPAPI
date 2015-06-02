@@ -80,15 +80,6 @@
       <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.OutStudentTrack" Member="OutStudentTracks">
-    <Type Name="OutStudentTrack">
-      <Column Name="[_ID]" Member="_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StudentId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OutDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="OutLat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OutLong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.RoleMaster" Member="RoleMasters">
     <Type Name="RoleMaster">
       <Column Name="RoleId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -221,6 +212,15 @@
       <Column Name="[_iD]" Member="_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="vehicleId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OutStudentTrack" Member="OutStudentTracks">
+    <Type Name="OutStudentTrack">
+      <Column Name="[_ID]" Member="_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OutDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OutLat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OutLong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

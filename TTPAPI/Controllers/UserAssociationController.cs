@@ -70,7 +70,7 @@ namespace TTPAPI.Controllers
 
         //   AddAssociateRoutewithUser - Http POST Mehtod - Url : api/UserAssociation/CreateAssociateRoutewithVehical?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
         [HttpPost]
-        [ActionName("CreateAssociateRoutewithVehical")]
+        [ActionName("CreateAssociateRoutewithVehicle")]
         public HttpResponseMessage AddAssociateRoutewithVehical(vehicleRouteMapDet objUserRouteMapDet, string Token, string AppKey)
         {
             string strJson = string.Empty;
@@ -115,8 +115,8 @@ namespace TTPAPI.Controllers
 
         //   AddAssociateDevicewithUser - Http POST Mehtod - Url : api/UserAssociation/CreateAssociateDevicewithVehical?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
         [HttpPost]
-        [ActionName("CreateAssociateDevicewithVehical")]
-        public HttpResponseMessage AddAssociateDevicewithUser(VehicleDeviceMapDet objUserDeviceMapDet, string Token, string AppKey)
+        [ActionName("CreateAssociateDevicewithVehicle")]
+        public HttpResponseMessage AddAssociateDevicewithVehicle(VehicleDeviceMapDet objUserDeviceMapDet, string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -167,7 +167,7 @@ namespace TTPAPI.Controllers
             }
         }
 
-        //   DisassociateDevicewithUser - Http POST Mehtod - Url : api/UserAssociation/DisassociateDevicewithVehicle?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
+        //   DisassociateDevicewithUser - Http POST Mehtod - Url : api/UserAssociation/DisassociateDevicewithVehicle?529b3d3f-0505-48f0-b1c4-776ba688678021&AppKey=F59BE8AB-2514-4F68-922D-A7E17604C0B1
         [HttpPost]
         [ActionName("DisassociateDevicewithVehicle")]
         public HttpResponseMessage DisassociateDevicewithVehicle(VehicleDeviceMapDet objUserDeviceMapDet, string Token, string AppKey)
@@ -184,7 +184,7 @@ namespace TTPAPI.Controllers
                     {
                         VehicleDeviceMapDet objUserDeviceMapDets = new VehicleDeviceMapDet();
                         var objDisassociate = (from udm in DB.VehicleDeviceMapDets
-                                               where objUserDeviceMapDet.vehicleId == udm.vehicleId
+                                               where objUserDeviceMapDet.vehicleId == udm.vehicleId && udm.DeviceId == objUserDeviceMapDet.DeviceId
                                                select new { udm }).FirstOrDefault();
                         if (objDisassociate != null)
                         {

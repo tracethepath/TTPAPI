@@ -37,6 +37,7 @@ namespace TTPAPI.Controllers
                             objDeviceMasters.DeviceModel = objDeviceMaster.DeviceModel;
                             objDeviceMasters.DeviceTypeId = objDeviceMaster.DeviceTypeId;
                             objDeviceMasters.DeviceUniqueId = objDeviceMaster.DeviceUniqueId;
+                            objDeviceMasters.AccountID = objDeviceMaster.AccountID;
                             DB.DeviceMasters.InsertOnSubmit(objDeviceMasters);
                             DB.SubmitChanges();
                             strJson = "{\"Result\":\"204\"}";
@@ -111,10 +112,10 @@ namespace TTPAPI.Controllers
                 return response;
             }
         }
-        //   GetDeviceInformation - Http GET Mehtod - Url : api/DeviceDetail/AllDeviceInformation?Token=&AppKey=
+        //   GetDeviceInformation - Http GET Mehtod - Url : api/DeviceDetail/AllDeviceInformation?AccountId=2&Token=&AppKey=
         [HttpGet]
         [ActionName("AllDeviceInformation")]
-        public HttpResponseMessage AllDeviceInformation(string Token, string AppKey)
+        public HttpResponseMessage AllDeviceInformation(string AccountId,string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -126,7 +127,7 @@ namespace TTPAPI.Controllers
                 {
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        var DeviceInformation = DB.DeviceMasters.ToList();
+                        var DeviceInformation = DB.DeviceMasters.Where(x=>x.AccountID == AccountId).ToList();
                         if (DeviceInformation != null)
                         {
                             response.Content = new StringContent(JsonConvert.SerializeObject(DeviceInformation), Encoding.UTF8, "application/json");

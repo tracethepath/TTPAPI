@@ -31,6 +31,9 @@ namespace TTPAPI.Controllers
                         StudentMaster objStudentMasters = new StudentMaster();
                         objStudentMasters.AccountID = objStudentMaster.AccountID;
                         objStudentMasters.Class = objStudentMaster.Class;
+                        objStudentMasters.QRCodeFileName = objStudentMaster.QRCodeFileName;
+                        objStudentMasters.QRCodeFilePath = objStudentMaster.QRCodeFilePath;
+                        objStudentMasters.RollNumber = objStudentMaster.RollNumber;
                         objStudentMasters.Division = objStudentMaster.Division;
                         objStudentMasters.Name = objStudentMaster.Name;
                         objStudentMasters.StudentID = objStudentMaster.StudentID;
@@ -112,10 +115,10 @@ namespace TTPAPI.Controllers
             }
         }
 
-        //   StudentList - Http POST Mehtod - Url : api/StudentInfo/StudentList?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
+        //   StudentList - Http POST Mehtod - Url : api/StudentInfo/StudentList?VehicleId=&AppKey=
         [HttpPost]
         [ActionName("StudentList")]
-        public HttpResponseMessage StudentList(StudentMaster objstudentlist, string VehicalId, string AppKey)
+        public HttpResponseMessage StudentList(StudentMaster objstudentlist, string VehicleId, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -128,12 +131,12 @@ namespace TTPAPI.Controllers
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
 
-                        if (objstudentlist.Division != null && objstudentlist.Class != null)
+                        if (objstudentlist.Division != null && objstudentlist.Division!="" && objstudentlist.Class != null)
                         {
 
                             var objStudentMasters = (from objstudentMaster in DB.StudentMasters
                                                      join objstudentVehiclemap in DB.StudentVehicleMapDetails on objstudentMaster.StudentID equals objstudentVehiclemap.StudentID
-                                                     where objstudentVehiclemap.VehicleId == VehicalId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Division == objstudentlist.Division && objstudentMaster.Class==objstudentlist.Class
+                                                     where objstudentVehiclemap.VehicleId == VehicleId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Division == objstudentlist.Division && objstudentMaster.Class==objstudentlist.Class
                                                      select new { objstudentMaster }).ToList();
                                 
                                 
@@ -149,11 +152,11 @@ namespace TTPAPI.Controllers
                                 return response;
                             }
                         }
-                        else if (objstudentlist.Division != null)
+                        else if (objstudentlist.Division != null && objstudentlist.Division != "")
                         {
                             var objStudentMasters = (from objstudentMaster in DB.StudentMasters
                                                      join objstudentVehiclemap in DB.StudentVehicleMapDetails on objstudentMaster.StudentID equals objstudentVehiclemap.StudentID
-                                                     where objstudentVehiclemap.VehicleId == VehicalId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Division == objstudentlist.Division
+                                                     where objstudentVehiclemap.VehicleId == VehicleId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Division == objstudentlist.Division
                                                      select new { objstudentMaster }).ToList();
                             if (objStudentMasters != null)
                             {
@@ -171,7 +174,7 @@ namespace TTPAPI.Controllers
                         {
                             var objStudentMasters = (from objstudentMaster in DB.StudentMasters
                                                      join objstudentVehiclemap in DB.StudentVehicleMapDetails on objstudentMaster.StudentID equals objstudentVehiclemap.StudentID
-                                                     where objstudentVehiclemap.VehicleId == VehicalId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Class == objstudentlist.Class
+                                                     where objstudentVehiclemap.VehicleId == VehicleId && objstudentMaster.AccountID == objstudentlist.AccountID && objstudentMaster.Class == objstudentlist.Class
                                                      select new { objstudentMaster }).ToList();
                             if (objStudentMasters != null)
                             {
@@ -189,7 +192,7 @@ namespace TTPAPI.Controllers
                         {
                             var objStudentMasters = (from objstudentMaster in DB.StudentMasters
                                                      join objstudentVehiclemap in DB.StudentVehicleMapDetails on objstudentMaster.StudentID equals objstudentVehiclemap.StudentID
-                                                     where objstudentVehiclemap.VehicleId == VehicalId && objstudentMaster.AccountID == objstudentlist.AccountID
+                                                     where objstudentVehiclemap.VehicleId == VehicleId && objstudentMaster.AccountID == objstudentlist.AccountID
                                                      select new { objstudentMaster }).ToList();
                                 
                             if (objStudentMasters != null)
@@ -291,7 +294,7 @@ namespace TTPAPI.Controllers
                     {
 
 
-                        var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).LastOrDefault();
+                        var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).ToList().LastOrDefault();
                         if (objInStudentTracks != null)
                         {
                             response.Content = new StringContent(JsonConvert.SerializeObject(objInStudentTracks), Encoding.UTF8, "application/json");

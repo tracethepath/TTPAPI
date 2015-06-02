@@ -32,7 +32,7 @@ namespace TTPAPI.Controllers
                         objRoleMaster.RoleName = objRole.RoleName;
                         objRoleMaster.RoleDesc = objRole.RoleDesc;
                         objRoleMaster.CreatedDateTime = DateTime.Now;
-                        objRoleMaster.CreatedBy = "bhavesh narola";//String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
+                        objRoleMaster.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
                         DB.RoleMasters.InsertOnSubmit(objRoleMaster);
                         DB.SubmitChanges();
 

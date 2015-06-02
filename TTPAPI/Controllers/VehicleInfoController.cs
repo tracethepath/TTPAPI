@@ -130,7 +130,7 @@ namespace TTPAPI.Controllers
                     {
 
 
-                        var objVehicleMasters = DB.VehicleMasters.Where(x => x.AccountId == AccountId).FirstOrDefault();
+                        var objVehicleMasters = DB.VehicleMasters.Where(x => x.AccountId == AccountId).ToList();
                         if (objVehicleMasters != null)
                         {
                             response.Content = new StringContent(JsonConvert.SerializeObject(objVehicleMasters), Encoding.UTF8, "application/json");

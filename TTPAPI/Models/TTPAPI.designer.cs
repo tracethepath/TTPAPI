@@ -99,6 +99,9 @@ namespace TTPAPI.Models
     partial void InsertUservehicleMapDet(UservehicleMapDet instance);
     partial void UpdateUservehicleMapDet(UservehicleMapDet instance);
     partial void DeleteUservehicleMapDet(UservehicleMapDet instance);
+    partial void InsertOutStudentTrack(OutStudentTrack instance);
+    partial void UpdateOutStudentTrack(OutStudentTrack instance);
+    partial void DeleteOutStudentTrack(OutStudentTrack instance);
     #endregion
 		
 		public TTPAPIDataContext() : 
@@ -200,14 +203,6 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<MapMaster>();
-			}
-		}
-		
-		public System.Data.Linq.Table<OutStudentTrack> OutStudentTracks
-		{
-			get
-			{
-				return this.GetTable<OutStudentTrack>();
 			}
 		}
 		
@@ -320,6 +315,14 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<UservehicleMapDet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OutStudentTrack> OutStudentTracks
+		{
+			get
+			{
+				return this.GetTable<OutStudentTrack>();
 			}
 		}
 	}
@@ -1718,105 +1721,6 @@ namespace TTPAPI.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutStudentTrack")]
-	public partial class OutStudentTrack
-	{
-		
-		private int @__ID;
-		
-		private string _StudentId;
-		
-		private System.Nullable<System.DateTime> _OutDateTime;
-		
-		private string _OutLat;
-		
-		private string _OutLong;
-		
-		public OutStudentTrack()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_ID]", Storage="__ID", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int _ID
-		{
-			get
-			{
-				return this.@__ID;
-			}
-			set
-			{
-				if ((this.@__ID != value))
-				{
-					this.@__ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="NVarChar(50)")]
-		public string StudentId
-		{
-			get
-			{
-				return this._StudentId;
-			}
-			set
-			{
-				if ((this._StudentId != value))
-				{
-					this._StudentId = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutDateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> OutDateTime
-		{
-			get
-			{
-				return this._OutDateTime;
-			}
-			set
-			{
-				if ((this._OutDateTime != value))
-				{
-					this._OutDateTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLat", DbType="NVarChar(50)")]
-		public string OutLat
-		{
-			get
-			{
-				return this._OutLat;
-			}
-			set
-			{
-				if ((this._OutLat != value))
-				{
-					this._OutLat = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLong", DbType="NVarChar(50)")]
-		public string OutLong
-		{
-			get
-			{
-				return this._OutLong;
-			}
-			set
-			{
-				if ((this._OutLong != value))
-				{
-					this._OutLong = value;
-				}
 			}
 		}
 	}
@@ -4200,6 +4104,164 @@ namespace TTPAPI.Models
 					this._UserId = value;
 					this.SendPropertyChanged("UserId");
 					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutStudentTrack")]
+	public partial class OutStudentTrack : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int @__ID;
+		
+		private string _StudentId;
+		
+		private System.Nullable<System.DateTime> _OutDateTime;
+		
+		private string _OutLat;
+		
+		private string _OutLong;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_IDChanging(int value);
+    partial void On_IDChanged();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnOutDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnOutDateTimeChanged();
+    partial void OnOutLatChanging(string value);
+    partial void OnOutLatChanged();
+    partial void OnOutLongChanging(string value);
+    partial void OnOutLongChanged();
+    #endregion
+		
+		public OutStudentTrack()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_ID]", Storage="__ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int _ID
+		{
+			get
+			{
+				return this.@__ID;
+			}
+			set
+			{
+				if ((this.@__ID != value))
+				{
+					this.On_IDChanging(value);
+					this.SendPropertyChanging();
+					this.@__ID = value;
+					this.SendPropertyChanged("_ID");
+					this.On_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="NVarChar(50)")]
+		public string StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OutDateTime
+		{
+			get
+			{
+				return this._OutDateTime;
+			}
+			set
+			{
+				if ((this._OutDateTime != value))
+				{
+					this.OnOutDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._OutDateTime = value;
+					this.SendPropertyChanged("OutDateTime");
+					this.OnOutDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLat", DbType="NVarChar(50)")]
+		public string OutLat
+		{
+			get
+			{
+				return this._OutLat;
+			}
+			set
+			{
+				if ((this._OutLat != value))
+				{
+					this.OnOutLatChanging(value);
+					this.SendPropertyChanging();
+					this._OutLat = value;
+					this.SendPropertyChanged("OutLat");
+					this.OnOutLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLong", DbType="NVarChar(50)")]
+		public string OutLong
+		{
+			get
+			{
+				return this._OutLong;
+			}
+			set
+			{
+				if ((this._OutLong != value))
+				{
+					this.OnOutLongChanging(value);
+					this.SendPropertyChanging();
+					this._OutLong = value;
+					this.SendPropertyChanged("OutLong");
+					this.OnOutLongChanged();
 				}
 			}
 		}
