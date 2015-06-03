@@ -27,10 +27,9 @@ namespace TTPAPI.Controllers
                 {
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        var PostLocationInfo = DB.DeviceLocationHistories.FirstOrDefault(x => x.DeviceId == DeviceId);
-                        if (PostLocationInfo == null)
-                        {
+                        
                             DeviceLocationHistory objDeviceLocationHistory = new DeviceLocationHistory();
+                            DeviceCurrentLocation objDevicecurrentlocation = new DeviceCurrentLocation();
                             objDeviceLocationHistory.DeviceId = DeviceId;
                             objDeviceLocationHistory.Lat = Lat;
                             objDeviceLocationHistory.Long = Long;
@@ -38,21 +37,36 @@ namespace TTPAPI.Controllers
                             objDeviceLocationHistory.Typeofnetwork = Typeofnetwork;
                             DB.DeviceLocationHistories.InsertOnSubmit(objDeviceLocationHistory);
                             DB.SubmitChanges();
+                            var objcurrentlocation = DB.DeviceCurrentLocations.Where(x => x.DeviceId == DeviceId).FirstOrDefault();
+                            if(objcurrentlocation ==null)
+                            {
+                                objDevicecurrentlocation.CurrentLat = Lat;
+                                objDevicecurrentlocation.CurrentLong = Long;
+                                objDevicecurrentlocation.DeviceId = DeviceId;
+                                objDevicecurrentlocation.UdatedDateTime = DateTime.UtcNow;
+                                DB.DeviceCurrentLocations.InsertOnSubmit(objDevicecurrentlocation);
+                                DB.SubmitChanges();
+
+                            }
+                            else
+                            {
+                                objcurrentlocation.CurrentLat = Lat;
+                                objcurrentlocation.CurrentLong = Long;
+                                objcurrentlocation.DeviceId = DeviceId;
+                                objcurrentlocation.UdatedDateTime = DateTime.UtcNow;
+                                DB.SubmitChanges();
+                            }
+                            
+
                             strJson = "{\"Result\":\"204\"}";
                             response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                             return response;
-                        }
-                        else
-                        {
-                            strJson = "{\"Result\":\"100\"}";
-                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                            return response;
-                        }
+                       
                     }
                 }
                 else
                 {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    strJson = result;
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }

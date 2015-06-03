@@ -15,6 +15,7 @@ namespace TTPAPI.Models
         {
             using (TTPAPIDataContext DB = new TTPAPIDataContext())
             {
+                string strJson = string.Empty;
                 Guid appkeyvalue = Guid.Parse(appkey);
                 var checktoken = (from atc in DB.AccessTokenCaches
                                 where atc.Token == tokenid
@@ -31,12 +32,16 @@ namespace TTPAPI.Models
                     }
                     else
                     {
-                        return "false";
+                        strJson = "{\"Result\":\"Invalide AppKey\"}";
+                        // response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                        return strJson;
                     }
                 }
                 else
                 {
-                    return "flase";
+                    strJson = "{\"Result\":\"Invalide Token\"}";
+                   // response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                    return strJson;
                 }
             }
             //return "false";

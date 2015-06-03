@@ -294,11 +294,21 @@ namespace TTPAPI.Controllers
                     {
 
 
-                        var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).ToList().LastOrDefault();
+                        var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).ToList();
                         if (objInStudentTracks != null)
                         {
-                            response.Content = new StringContent(JsonConvert.SerializeObject(objInStudentTracks), Encoding.UTF8, "application/json");
-                            return response;
+
+                            var objOutstudentTrack = DB.OutStudentTracks.Where(x => x.StudentId == studentId).ToList();
+                            if (objOutstudentTrack != null)
+                            {
+                                response.Content = new StringContent("{\"InStudentTracks\":" +JsonConvert.SerializeObject(objInStudentTracks) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack)+"}", Encoding.UTF8, "application/json");
+                                return response;
+                            }
+                            else
+                            {
+                                response.Content = new StringContent(JsonConvert.SerializeObject(objInStudentTracks), Encoding.UTF8, "application/json");
+                                return response;
+                            }
                         }
                         else
                         {

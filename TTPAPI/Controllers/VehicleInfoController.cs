@@ -47,7 +47,7 @@ namespace TTPAPI.Controllers
                 }
                 else
                 {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    strJson = result;
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
@@ -146,7 +146,7 @@ namespace TTPAPI.Controllers
                 }
                 else
                 {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    strJson = result;
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
@@ -197,7 +197,7 @@ namespace TTPAPI.Controllers
                 }
                 else
                 {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    strJson = result;
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
@@ -240,7 +240,7 @@ namespace TTPAPI.Controllers
                 }
                 else
                 {
-                    strJson = "{\"Result\":\"Invalide AppKey\"}";
+                    strJson = result;
                     response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                     return response;
                 }
