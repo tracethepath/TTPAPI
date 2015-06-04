@@ -15,7 +15,7 @@ namespace TTPAPI.Controllers
         //   PostLocation - Http Get Mehtod - Url : api/Location/CreatePostLocation?Lat=23&Long=345&DateTime=2014-10-05 18:47:59.927&Typeofnetwork=gsm&Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&DeviceId=1
         [HttpGet]
         [ActionName("CreatePostLocation")]
-        public HttpResponseMessage AddPostLocation(string Lat, string Long, DateTime DateTime, string Typeofnetwork, string Token, string AppKey, Int32 DeviceId)
+        public HttpResponseMessage AddPostLocation(string Lat, string Long, DateTime DateTime, string Typeofnetwork, string Token, string AppKey, string DeviceId)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -43,7 +43,7 @@ namespace TTPAPI.Controllers
                                 objDevicecurrentlocation.CurrentLat = Lat;
                                 objDevicecurrentlocation.CurrentLong = Long;
                                 objDevicecurrentlocation.DeviceId = DeviceId;
-                                objDevicecurrentlocation.UdatedDateTime = DateTime.UtcNow;
+                                objDevicecurrentlocation.UdatedDateTime = DateTime;
                                 DB.DeviceCurrentLocations.InsertOnSubmit(objDevicecurrentlocation);
                                 DB.SubmitChanges();
 
@@ -53,7 +53,7 @@ namespace TTPAPI.Controllers
                                 objcurrentlocation.CurrentLat = Lat;
                                 objcurrentlocation.CurrentLong = Long;
                                 objcurrentlocation.DeviceId = DeviceId;
-                                objcurrentlocation.UdatedDateTime = DateTime.UtcNow;
+                                objcurrentlocation.UdatedDateTime = DateTime;
                                 DB.SubmitChanges();
                             }
                             
@@ -81,7 +81,7 @@ namespace TTPAPI.Controllers
         //   GetLocationByDeviceId - Http GET Mehtod - Url : api/Location/DeviceLocationHistoryByDeviceId?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&DeviceId=12345678
         [HttpGet]
         [ActionName("DeviceLocationHistoryByDeviceId")]
-        public HttpResponseMessage GetDeviceLocationHistoryByDeviceId(string Token, string AppKey, Int32 DeviceId)
+        public HttpResponseMessage GetDeviceLocationHistoryByDeviceId(string Token, string AppKey, string DeviceId)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -236,7 +236,7 @@ namespace TTPAPI.Controllers
         //   GetLocationsbyRoute - Http GET Mehtod - Url : api/Location/CurrentLocation?Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&DeviceId=1234
         [HttpGet]
         [ActionName("CurrentLocation")]
-        public HttpResponseMessage GetCurrentLocation(string Token, string AppKey, int DeviceId)
+        public HttpResponseMessage GetCurrentLocation(string Token, string AppKey, string DeviceId)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);

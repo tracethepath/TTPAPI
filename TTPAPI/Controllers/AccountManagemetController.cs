@@ -143,7 +143,7 @@ namespace TTPAPI.Controllers
                                                    PostalAddress = objUserContactDets.PostalAddress,
                                                    EmailAddress = objUserContactDets.EmailAddress,
                                                    PreferredAlert = objUserContactDets.PreferredAlert,
-                                                   DeviceId = (Int32?)g.Select(x => x.DeviceId).FirstOrDefault(),
+                                                   DeviceId = g.Select(x => x.DeviceId).FirstOrDefault(),
                                                    //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
                                                    //    UpdatedDateTime=objUserLoginDets.UpdatedDateTime
                                                }).ToList();

@@ -48,15 +48,18 @@ namespace TTPAPI.Models
     partial void InsertDeviceMaster(DeviceMaster instance);
     partial void UpdateDeviceMaster(DeviceMaster instance);
     partial void DeleteDeviceMaster(DeviceMaster instance);
-    partial void InsertInStudentTrack(InStudentTrack instance);
-    partial void UpdateInStudentTrack(InStudentTrack instance);
-    partial void DeleteInStudentTrack(InStudentTrack instance);
     partial void InsertDeviceTypeMaster(DeviceTypeMaster instance);
     partial void UpdateDeviceTypeMaster(DeviceTypeMaster instance);
     partial void DeleteDeviceTypeMaster(DeviceTypeMaster instance);
+    partial void InsertInStudentTrack(InStudentTrack instance);
+    partial void UpdateInStudentTrack(InStudentTrack instance);
+    partial void DeleteInStudentTrack(InStudentTrack instance);
     partial void InsertMapMaster(MapMaster instance);
     partial void UpdateMapMaster(MapMaster instance);
     partial void DeleteMapMaster(MapMaster instance);
+    partial void InsertOutStudentTrack(OutStudentTrack instance);
+    partial void UpdateOutStudentTrack(OutStudentTrack instance);
+    partial void DeleteOutStudentTrack(OutStudentTrack instance);
     partial void InsertRoleMaster(RoleMaster instance);
     partial void UpdateRoleMaster(RoleMaster instance);
     partial void DeleteRoleMaster(RoleMaster instance);
@@ -87,21 +90,18 @@ namespace TTPAPI.Models
     partial void InsertUserMapDet(UserMapDet instance);
     partial void UpdateUserMapDet(UserMapDet instance);
     partial void DeleteUserMapDet(UserMapDet instance);
-    partial void InsertVehicleMaster(VehicleMaster instance);
-    partial void UpdateVehicleMaster(VehicleMaster instance);
-    partial void DeleteVehicleMaster(VehicleMaster instance);
-    partial void InsertvehicleRouteMapDet(vehicleRouteMapDet instance);
-    partial void UpdatevehicleRouteMapDet(vehicleRouteMapDet instance);
-    partial void DeletevehicleRouteMapDet(vehicleRouteMapDet instance);
-    partial void InsertVehicleDeviceMapDet(VehicleDeviceMapDet instance);
-    partial void UpdateVehicleDeviceMapDet(VehicleDeviceMapDet instance);
-    partial void DeleteVehicleDeviceMapDet(VehicleDeviceMapDet instance);
     partial void InsertUservehicleMapDet(UservehicleMapDet instance);
     partial void UpdateUservehicleMapDet(UservehicleMapDet instance);
     partial void DeleteUservehicleMapDet(UservehicleMapDet instance);
-    partial void InsertOutStudentTrack(OutStudentTrack instance);
-    partial void UpdateOutStudentTrack(OutStudentTrack instance);
-    partial void DeleteOutStudentTrack(OutStudentTrack instance);
+    partial void InsertVehicleDeviceMapDet(VehicleDeviceMapDet instance);
+    partial void UpdateVehicleDeviceMapDet(VehicleDeviceMapDet instance);
+    partial void DeleteVehicleDeviceMapDet(VehicleDeviceMapDet instance);
+    partial void InsertVehicleMaster(VehicleMaster instance);
+    partial void UpdateVehicleMaster(VehicleMaster instance);
+    partial void DeleteVehicleMaster(VehicleMaster instance);
+    partial void InsertVehicleRouteMapDet(VehicleRouteMapDet instance);
+    partial void UpdateVehicleRouteMapDet(VehicleRouteMapDet instance);
+    partial void DeleteVehicleRouteMapDet(VehicleRouteMapDet instance);
     #endregion
 		
 		public TTPAPIDataContext() : 
@@ -182,14 +182,6 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<InStudentTrack> InStudentTracks
-		{
-			get
-			{
-				return this.GetTable<InStudentTrack>();
-			}
-		}
-		
 		public System.Data.Linq.Table<DeviceTypeMaster> DeviceTypeMasters
 		{
 			get
@@ -198,11 +190,27 @@ namespace TTPAPI.Models
 			}
 		}
 		
+		public System.Data.Linq.Table<InStudentTrack> InStudentTracks
+		{
+			get
+			{
+				return this.GetTable<InStudentTrack>();
+			}
+		}
+		
 		public System.Data.Linq.Table<MapMaster> MapMasters
 		{
 			get
 			{
 				return this.GetTable<MapMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<OutStudentTrack> OutStudentTracks
+		{
+			get
+			{
+				return this.GetTable<OutStudentTrack>();
 			}
 		}
 		
@@ -227,6 +235,14 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<RouteDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<StudentDetail> StudentDetails
+		{
+			get
+			{
+				return this.GetTable<StudentDetail>();
 			}
 		}
 		
@@ -286,19 +302,11 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<VehicleMaster> VehicleMasters
+		public System.Data.Linq.Table<UservehicleMapDet> UservehicleMapDets
 		{
 			get
 			{
-				return this.GetTable<VehicleMaster>();
-			}
-		}
-		
-		public System.Data.Linq.Table<vehicleRouteMapDet> vehicleRouteMapDets
-		{
-			get
-			{
-				return this.GetTable<vehicleRouteMapDet>();
+				return this.GetTable<UservehicleMapDet>();
 			}
 		}
 		
@@ -310,19 +318,19 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<UservehicleMapDet> UservehicleMapDets
+		public System.Data.Linq.Table<VehicleMaster> VehicleMasters
 		{
 			get
 			{
-				return this.GetTable<UservehicleMapDet>();
+				return this.GetTable<VehicleMaster>();
 			}
 		}
 		
-		public System.Data.Linq.Table<OutStudentTrack> OutStudentTracks
+		public System.Data.Linq.Table<VehicleRouteMapDet> VehicleRouteMapDets
 		{
 			get
 			{
-				return this.GetTable<OutStudentTrack>();
+				return this.GetTable<VehicleRouteMapDet>();
 			}
 		}
 	}
@@ -809,7 +817,7 @@ namespace TTPAPI.Models
 		
 		private long @__id;
 		
-		private long _DeviceId;
+		private string _DeviceId;
 		
 		private string _CurrentLat;
 		
@@ -823,7 +831,7 @@ namespace TTPAPI.Models
     partial void OnCreated();
     partial void On_idChanging(long value);
     partial void On_idChanged();
-    partial void OnDeviceIdChanging(long value);
+    partial void OnDeviceIdChanging(string value);
     partial void OnDeviceIdChanged();
     partial void OnCurrentLatChanging(string value);
     partial void OnCurrentLatChanged();
@@ -858,8 +866,8 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
 		{
 			get
 			{
@@ -967,7 +975,7 @@ namespace TTPAPI.Models
 		
 		private long @__id;
 		
-		private long _DeviceId;
+		private string _DeviceId;
 		
 		private string _Lat;
 		
@@ -983,7 +991,7 @@ namespace TTPAPI.Models
     partial void OnCreated();
     partial void On_idChanging(long value);
     partial void On_idChanged();
-    partial void OnDeviceIdChanging(long value);
+    partial void OnDeviceIdChanging(string value);
     partial void OnDeviceIdChanged();
     partial void OnLatChanging(string value);
     partial void OnLatChanged();
@@ -1020,8 +1028,8 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
 		{
 			get
 			{
@@ -1149,7 +1157,7 @@ namespace TTPAPI.Models
 		
 		private long @__id;
 		
-		private long _DeviceId;
+		private string _DeviceId;
 		
 		private string _DeviceUniqueId;
 		
@@ -1165,7 +1173,7 @@ namespace TTPAPI.Models
     partial void OnCreated();
     partial void On_idChanging(long value);
     partial void On_idChanged();
-    partial void OnDeviceIdChanging(long value);
+    partial void OnDeviceIdChanging(string value);
     partial void OnDeviceIdChanged();
     partial void OnDeviceUniqueIdChanging(string value);
     partial void OnDeviceUniqueIdChanged();
@@ -1202,8 +1210,8 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
 		{
 			get
 			{
@@ -1298,6 +1306,92 @@ namespace TTPAPI.Models
 					this._AccountID = value;
 					this.SendPropertyChanged("AccountID");
 					this.OnAccountIDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceTypeMaster")]
+	public partial class DeviceTypeMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _DeviceTypeId;
+		
+		private string _DeviceTypeDesc;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDeviceTypeIdChanging(string value);
+    partial void OnDeviceTypeIdChanged();
+    partial void OnDeviceTypeDescChanging(string value);
+    partial void OnDeviceTypeDescChanged();
+    #endregion
+		
+		public DeviceTypeMaster()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceTypeId", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string DeviceTypeId
+		{
+			get
+			{
+				return this._DeviceTypeId;
+			}
+			set
+			{
+				if ((this._DeviceTypeId != value))
+				{
+					this.OnDeviceTypeIdChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceTypeId = value;
+					this.SendPropertyChanged("DeviceTypeId");
+					this.OnDeviceTypeIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceTypeDesc", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceTypeDesc
+		{
+			get
+			{
+				return this._DeviceTypeDesc;
+			}
+			set
+			{
+				if ((this._DeviceTypeDesc != value))
+				{
+					this.OnDeviceTypeDescChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceTypeDesc = value;
+					this.SendPropertyChanged("DeviceTypeDesc");
+					this.OnDeviceTypeDescChanged();
 				}
 			}
 		}
@@ -1481,92 +1575,6 @@ namespace TTPAPI.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceTypeMaster")]
-	public partial class DeviceTypeMaster : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long _DeviceTypeId;
-		
-		private string _DeviceTypeDesc;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDeviceTypeIdChanging(long value);
-    partial void OnDeviceTypeIdChanged();
-    partial void OnDeviceTypeDescChanging(string value);
-    partial void OnDeviceTypeDescChanged();
-    #endregion
-		
-		public DeviceTypeMaster()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceTypeId", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long DeviceTypeId
-		{
-			get
-			{
-				return this._DeviceTypeId;
-			}
-			set
-			{
-				if ((this._DeviceTypeId != value))
-				{
-					this.OnDeviceTypeIdChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceTypeId = value;
-					this.SendPropertyChanged("DeviceTypeId");
-					this.OnDeviceTypeIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceTypeDesc", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string DeviceTypeDesc
-		{
-			get
-			{
-				return this._DeviceTypeDesc;
-			}
-			set
-			{
-				if ((this._DeviceTypeDesc != value))
-				{
-					this.OnDeviceTypeDescChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceTypeDesc = value;
-					this.SendPropertyChanged("DeviceTypeDesc");
-					this.OnDeviceTypeDescChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MapMaster")]
 	public partial class MapMaster : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1700,6 +1708,164 @@ namespace TTPAPI.Models
 					this._CreatedBy = value;
 					this.SendPropertyChanged("CreatedBy");
 					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutStudentTrack")]
+	public partial class OutStudentTrack : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int @__ID;
+		
+		private string _StudentId;
+		
+		private System.Nullable<System.DateTime> _OutDateTime;
+		
+		private string _OutLat;
+		
+		private string _OutLong;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_IDChanging(int value);
+    partial void On_IDChanged();
+    partial void OnStudentIdChanging(string value);
+    partial void OnStudentIdChanged();
+    partial void OnOutDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnOutDateTimeChanged();
+    partial void OnOutLatChanging(string value);
+    partial void OnOutLatChanged();
+    partial void OnOutLongChanging(string value);
+    partial void OnOutLongChanged();
+    #endregion
+		
+		public OutStudentTrack()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_ID]", Storage="__ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int _ID
+		{
+			get
+			{
+				return this.@__ID;
+			}
+			set
+			{
+				if ((this.@__ID != value))
+				{
+					this.On_IDChanging(value);
+					this.SendPropertyChanging();
+					this.@__ID = value;
+					this.SendPropertyChanged("_ID");
+					this.On_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="NVarChar(50)")]
+		public string StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					this.OnStudentIdChanging(value);
+					this.SendPropertyChanging();
+					this._StudentId = value;
+					this.SendPropertyChanged("StudentId");
+					this.OnStudentIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OutDateTime
+		{
+			get
+			{
+				return this._OutDateTime;
+			}
+			set
+			{
+				if ((this._OutDateTime != value))
+				{
+					this.OnOutDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._OutDateTime = value;
+					this.SendPropertyChanged("OutDateTime");
+					this.OnOutDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLat", DbType="NVarChar(50)")]
+		public string OutLat
+		{
+			get
+			{
+				return this._OutLat;
+			}
+			set
+			{
+				if ((this._OutLat != value))
+				{
+					this.OnOutLatChanging(value);
+					this.SendPropertyChanging();
+					this._OutLat = value;
+					this.SendPropertyChanged("OutLat");
+					this.OnOutLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLong", DbType="NVarChar(50)")]
+		public string OutLong
+		{
+			get
+			{
+				return this._OutLong;
+			}
+			set
+			{
+				if ((this._OutLong != value))
+				{
+					this.OnOutLongChanging(value);
+					this.SendPropertyChanging();
+					this._OutLong = value;
+					this.SendPropertyChanged("OutLong");
+					this.OnOutLongChanged();
 				}
 			}
 		}
@@ -2243,6 +2409,87 @@ namespace TTPAPI.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.StudentDetails")]
+	public partial class StudentDetail
+	{
+		
+		private int _StudentId;
+		
+		private string _BarcodeId;
+		
+		private string _AccountId;
+		
+		private string _Vehicle_UserId;
+		
+		public StudentDetail()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="Int NOT NULL")]
+		public int StudentId
+		{
+			get
+			{
+				return this._StudentId;
+			}
+			set
+			{
+				if ((this._StudentId != value))
+				{
+					this._StudentId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BarcodeId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string BarcodeId
+		{
+			get
+			{
+				return this._BarcodeId;
+			}
+			set
+			{
+				if ((this._BarcodeId != value))
+				{
+					this._BarcodeId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string AccountId
+		{
+			get
+			{
+				return this._AccountId;
+			}
+			set
+			{
+				if ((this._AccountId != value))
+				{
+					this._AccountId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vehicle_UserId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Vehicle_UserId
+		{
+			get
+			{
+				return this._Vehicle_UserId;
+			}
+			set
+			{
+				if ((this._Vehicle_UserId != value))
+				{
+					this._Vehicle_UserId = value;
+				}
 			}
 		}
 	}
@@ -2827,7 +3074,7 @@ namespace TTPAPI.Models
 		
 		private string _UserId;
 		
-		private long _DeviceId;
+		private string _DeviceId;
 		
 		private System.DateTime _MappedDateTime;
 		
@@ -2843,7 +3090,7 @@ namespace TTPAPI.Models
     partial void On_idChanged();
     partial void OnUserIdChanging(string value);
     partial void OnUserIdChanged();
-    partial void OnDeviceIdChanging(long value);
+    partial void OnDeviceIdChanging(string value);
     partial void OnDeviceIdChanged();
     partial void OnMappedDateTimeChanging(System.DateTime value);
     partial void OnMappedDateTimeChanged();
@@ -2898,8 +3145,8 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
 		{
 			get
 			{
@@ -3497,6 +3744,250 @@ namespace TTPAPI.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UservehicleMapDet")]
+	public partial class UservehicleMapDet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int @__iD;
+		
+		private string _vehicleId;
+		
+		private string _UserId;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_iDChanging(int value);
+    partial void On_iDChanged();
+    partial void OnvehicleIdChanging(string value);
+    partial void OnvehicleIdChanged();
+    partial void OnUserIdChanging(string value);
+    partial void OnUserIdChanged();
+    #endregion
+		
+		public UservehicleMapDet()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_iD]", Storage="__iD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int _iD
+		{
+			get
+			{
+				return this.@__iD;
+			}
+			set
+			{
+				if ((this.@__iD != value))
+				{
+					this.On_iDChanging(value);
+					this.SendPropertyChanging();
+					this.@__iD = value;
+					this.SendPropertyChanged("_iD");
+					this.On_iDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehicleId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string vehicleId
+		{
+			get
+			{
+				return this._vehicleId;
+			}
+			set
+			{
+				if ((this._vehicleId != value))
+				{
+					this.OnvehicleIdChanging(value);
+					this.SendPropertyChanging();
+					this._vehicleId = value;
+					this.SendPropertyChanged("vehicleId");
+					this.OnvehicleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string UserId
+		{
+			get
+			{
+				return this._UserId;
+			}
+			set
+			{
+				if ((this._UserId != value))
+				{
+					this.OnUserIdChanging(value);
+					this.SendPropertyChanging();
+					this._UserId = value;
+					this.SendPropertyChanged("UserId");
+					this.OnUserIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VehicleDeviceMapDet")]
+	public partial class VehicleDeviceMapDet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int @__iD;
+		
+		private string _vehicleId;
+		
+		private string _DeviceId;
+		
+		private System.Nullable<bool> _IsActive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_iDChanging(int value);
+    partial void On_iDChanged();
+    partial void OnvehicleIdChanging(string value);
+    partial void OnvehicleIdChanged();
+    partial void OnDeviceIdChanging(string value);
+    partial void OnDeviceIdChanged();
+    partial void OnIsActiveChanging(System.Nullable<bool> value);
+    partial void OnIsActiveChanged();
+    #endregion
+		
+		public VehicleDeviceMapDet()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_iD]", Storage="__iD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int _iD
+		{
+			get
+			{
+				return this.@__iD;
+			}
+			set
+			{
+				if ((this.@__iD != value))
+				{
+					this.On_iDChanging(value);
+					this.SendPropertyChanging();
+					this.@__iD = value;
+					this.SendPropertyChanged("_iD");
+					this.On_iDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehicleId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string vehicleId
+		{
+			get
+			{
+				return this._vehicleId;
+			}
+			set
+			{
+				if ((this._vehicleId != value))
+				{
+					this.OnvehicleIdChanging(value);
+					this.SendPropertyChanging();
+					this._vehicleId = value;
+					this.SendPropertyChanged("vehicleId");
+					this.OnvehicleIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
+		{
+			get
+			{
+				return this._DeviceId;
+			}
+			set
+			{
+				if ((this._DeviceId != value))
+				{
+					this.OnDeviceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceId = value;
+					this.SendPropertyChanged("DeviceId");
+					this.OnDeviceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit")]
+		public System.Nullable<bool> IsActive
+		{
+			get
+			{
+				return this._IsActive;
+			}
+			set
+			{
+				if ((this._IsActive != value))
+				{
+					this.OnIsActiveChanging(value);
+					this.SendPropertyChanging();
+					this._IsActive = value;
+					this.SendPropertyChanged("IsActive");
+					this.OnIsActiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VehicleMaster")]
 	public partial class VehicleMaster : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3679,15 +4170,15 @@ namespace TTPAPI.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vehicleRouteMapDet")]
-	public partial class vehicleRouteMapDet : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VehicleRouteMapDet")]
+	public partial class VehicleRouteMapDet : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long @__id;
 		
-		private string _vehicleId;
+		private string _VehicleId;
 		
 		private string _RouteId;
 		
@@ -3705,8 +4196,8 @@ namespace TTPAPI.Models
     partial void OnCreated();
     partial void On_idChanging(long value);
     partial void On_idChanged();
-    partial void OnvehicleIdChanging(string value);
-    partial void OnvehicleIdChanged();
+    partial void OnVehicleIdChanging(string value);
+    partial void OnVehicleIdChanged();
     partial void OnRouteIdChanging(string value);
     partial void OnRouteIdChanged();
     partial void OnCreatedDateTimeChanging(System.DateTime value);
@@ -3719,7 +4210,7 @@ namespace TTPAPI.Models
     partial void OnUpdatedByChanged();
     #endregion
 		
-		public vehicleRouteMapDet()
+		public VehicleRouteMapDet()
 		{
 			OnCreated();
 		}
@@ -3744,22 +4235,22 @@ namespace TTPAPI.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehicleId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string vehicleId
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VehicleId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string VehicleId
 		{
 			get
 			{
-				return this._vehicleId;
+				return this._VehicleId;
 			}
 			set
 			{
-				if ((this._vehicleId != value))
+				if ((this._VehicleId != value))
 				{
-					this.OnvehicleIdChanging(value);
+					this.OnVehicleIdChanging(value);
 					this.SendPropertyChanging();
-					this._vehicleId = value;
-					this.SendPropertyChanged("vehicleId");
-					this.OnvehicleIdChanged();
+					this._VehicleId = value;
+					this.SendPropertyChanged("VehicleId");
+					this.OnVehicleIdChanged();
 				}
 			}
 		}
@@ -3860,408 +4351,6 @@ namespace TTPAPI.Models
 					this._UpdatedBy = value;
 					this.SendPropertyChanged("UpdatedBy");
 					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VehicleDeviceMapDet")]
-	public partial class VehicleDeviceMapDet : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int @__iD;
-		
-		private string _vehicleId;
-		
-		private long _DeviceId;
-		
-		private System.Nullable<bool> _IsActive;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On_iDChanging(int value);
-    partial void On_iDChanged();
-    partial void OnvehicleIdChanging(string value);
-    partial void OnvehicleIdChanged();
-    partial void OnDeviceIdChanging(long value);
-    partial void OnDeviceIdChanged();
-    partial void OnIsActiveChanging(System.Nullable<bool> value);
-    partial void OnIsActiveChanged();
-    #endregion
-		
-		public VehicleDeviceMapDet()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_iD]", Storage="__iD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int _iD
-		{
-			get
-			{
-				return this.@__iD;
-			}
-			set
-			{
-				if ((this.@__iD != value))
-				{
-					this.On_iDChanging(value);
-					this.SendPropertyChanging();
-					this.@__iD = value;
-					this.SendPropertyChanged("_iD");
-					this.On_iDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehicleId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string vehicleId
-		{
-			get
-			{
-				return this._vehicleId;
-			}
-			set
-			{
-				if ((this._vehicleId != value))
-				{
-					this.OnvehicleIdChanging(value);
-					this.SendPropertyChanging();
-					this._vehicleId = value;
-					this.SendPropertyChanged("vehicleId");
-					this.OnvehicleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="BigInt NOT NULL")]
-		public long DeviceId
-		{
-			get
-			{
-				return this._DeviceId;
-			}
-			set
-			{
-				if ((this._DeviceId != value))
-				{
-					this.OnDeviceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceId = value;
-					this.SendPropertyChanged("DeviceId");
-					this.OnDeviceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsActive", DbType="Bit")]
-		public System.Nullable<bool> IsActive
-		{
-			get
-			{
-				return this._IsActive;
-			}
-			set
-			{
-				if ((this._IsActive != value))
-				{
-					this.OnIsActiveChanging(value);
-					this.SendPropertyChanging();
-					this._IsActive = value;
-					this.SendPropertyChanged("IsActive");
-					this.OnIsActiveChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UservehicleMapDet")]
-	public partial class UservehicleMapDet : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int @__iD;
-		
-		private string _vehicleId;
-		
-		private string _UserId;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On_iDChanging(int value);
-    partial void On_iDChanged();
-    partial void OnvehicleIdChanging(string value);
-    partial void OnvehicleIdChanged();
-    partial void OnUserIdChanging(string value);
-    partial void OnUserIdChanged();
-    #endregion
-		
-		public UservehicleMapDet()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_iD]", Storage="__iD", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int _iD
-		{
-			get
-			{
-				return this.@__iD;
-			}
-			set
-			{
-				if ((this.@__iD != value))
-				{
-					this.On_iDChanging(value);
-					this.SendPropertyChanging();
-					this.@__iD = value;
-					this.SendPropertyChanged("_iD");
-					this.On_iDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vehicleId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string vehicleId
-		{
-			get
-			{
-				return this._vehicleId;
-			}
-			set
-			{
-				if ((this._vehicleId != value))
-				{
-					this.OnvehicleIdChanging(value);
-					this.SendPropertyChanging();
-					this._vehicleId = value;
-					this.SendPropertyChanged("vehicleId");
-					this.OnvehicleIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserId", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string UserId
-		{
-			get
-			{
-				return this._UserId;
-			}
-			set
-			{
-				if ((this._UserId != value))
-				{
-					this.OnUserIdChanging(value);
-					this.SendPropertyChanging();
-					this._UserId = value;
-					this.SendPropertyChanged("UserId");
-					this.OnUserIdChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.OutStudentTrack")]
-	public partial class OutStudentTrack : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int @__ID;
-		
-		private string _StudentId;
-		
-		private System.Nullable<System.DateTime> _OutDateTime;
-		
-		private string _OutLat;
-		
-		private string _OutLong;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On_IDChanging(int value);
-    partial void On_IDChanged();
-    partial void OnStudentIdChanging(string value);
-    partial void OnStudentIdChanged();
-    partial void OnOutDateTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnOutDateTimeChanged();
-    partial void OnOutLatChanging(string value);
-    partial void OnOutLatChanged();
-    partial void OnOutLongChanging(string value);
-    partial void OnOutLongChanged();
-    #endregion
-		
-		public OutStudentTrack()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_ID]", Storage="__ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int _ID
-		{
-			get
-			{
-				return this.@__ID;
-			}
-			set
-			{
-				if ((this.@__ID != value))
-				{
-					this.On_IDChanging(value);
-					this.SendPropertyChanging();
-					this.@__ID = value;
-					this.SendPropertyChanged("_ID");
-					this.On_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentId", DbType="NVarChar(50)")]
-		public string StudentId
-		{
-			get
-			{
-				return this._StudentId;
-			}
-			set
-			{
-				if ((this._StudentId != value))
-				{
-					this.OnStudentIdChanging(value);
-					this.SendPropertyChanging();
-					this._StudentId = value;
-					this.SendPropertyChanged("StudentId");
-					this.OnStudentIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutDateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> OutDateTime
-		{
-			get
-			{
-				return this._OutDateTime;
-			}
-			set
-			{
-				if ((this._OutDateTime != value))
-				{
-					this.OnOutDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._OutDateTime = value;
-					this.SendPropertyChanged("OutDateTime");
-					this.OnOutDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLat", DbType="NVarChar(50)")]
-		public string OutLat
-		{
-			get
-			{
-				return this._OutLat;
-			}
-			set
-			{
-				if ((this._OutLat != value))
-				{
-					this.OnOutLatChanging(value);
-					this.SendPropertyChanging();
-					this._OutLat = value;
-					this.SendPropertyChanged("OutLat");
-					this.OnOutLatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OutLong", DbType="NVarChar(50)")]
-		public string OutLong
-		{
-			get
-			{
-				return this._OutLong;
-			}
-			set
-			{
-				if ((this._OutLong != value))
-				{
-					this.OnOutLongChanging(value);
-					this.SendPropertyChanging();
-					this._OutLong = value;
-					this.SendPropertyChanged("OutLong");
-					this.OnOutLongChanged();
 				}
 			}
 		}

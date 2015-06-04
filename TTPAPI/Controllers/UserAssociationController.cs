@@ -71,7 +71,7 @@ namespace TTPAPI.Controllers
         //   AddAssociateRoutewithUser - Http POST Mehtod - Url : api/UserAssociation/CreateAssociateRoutewithVehical?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
         [HttpPost]
         [ActionName("CreateAssociateRoutewithVehicle")]
-        public HttpResponseMessage AddAssociateRoutewithVehical(vehicleRouteMapDet objUserRouteMapDet, string Token, string AppKey)
+        public HttpResponseMessage AddAssociateRoutewithVehical(VehicleRouteMapDet objUserRouteMapDet, string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -83,14 +83,14 @@ namespace TTPAPI.Controllers
                 {
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
-                        vehicleRouteMapDet objUserRouteMapDets = new vehicleRouteMapDet();
+                        VehicleRouteMapDet objUserRouteMapDets = new VehicleRouteMapDet();
                         objUserRouteMapDets.RouteId = objUserRouteMapDet.RouteId;
-                        objUserRouteMapDets.vehicleId = objUserRouteMapDet.vehicleId;
+                        objUserRouteMapDets.VehicleId = objUserRouteMapDet.VehicleId;
                         objUserRouteMapDets.CreatedDateTime = DateTime.Now;
                         objUserRouteMapDets.CreatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
                         objUserRouteMapDets.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
                         objUserRouteMapDets.UpdatedDateTime = DateTime.Now;
-                        DB.vehicleRouteMapDets.InsertOnSubmit(objUserRouteMapDets);
+                        DB.VehicleRouteMapDets.InsertOnSubmit(objUserRouteMapDets);
                         DB.SubmitChanges();
                         strJson = "{\"Result\":\"204\"}";
                         response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");

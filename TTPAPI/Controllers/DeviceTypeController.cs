@@ -54,7 +54,7 @@ namespace TTPAPI.Controllers
         //   GetDeviceTypeInformation - Http GET Mehtod - Url : api/DeviceType/DeviceTypeInformationByDeviceTypeId?DeviceTypeId=1&Token=0&AppKey=0
         [HttpGet]
         [ActionName("DeviceTypeInformationByDeviceTypeId")]
-        public HttpResponseMessage GetDeviceTypeInformation(Int32 DeviceTypeId, string Token, string AppKey)
+        public HttpResponseMessage GetDeviceTypeInformation(string DeviceTypeId, string Token, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);

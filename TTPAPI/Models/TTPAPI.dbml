@@ -30,7 +30,7 @@
   <Table Name="dbo.DeviceCurrentLocation" Member="DeviceCurrentLocations">
     <Type Name="DeviceCurrentLocation">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DeviceId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CurrentLat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CurrentLong" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UdatedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
@@ -39,7 +39,7 @@
   <Table Name="dbo.DeviceLocationHistory" Member="DeviceLocationHistories">
     <Type Name="DeviceLocationHistory">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DeviceId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Lat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Long" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Typeofnetwork" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
@@ -49,11 +49,17 @@
   <Table Name="dbo.DeviceMaster" Member="DeviceMasters">
     <Type Name="DeviceMaster">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DeviceId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="DeviceUniqueId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="DeviceTypeId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
       <Column Name="DeviceModel" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="AccountID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DeviceTypeMaster" Member="DeviceTypeMasters">
+    <Type Name="DeviceTypeMaster">
+      <Column Name="DeviceTypeId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="DeviceTypeDesc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.InStudentTrack" Member="InStudentTracks">
@@ -65,12 +71,6 @@
       <Column Name="InLong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.DeviceTypeMaster" Member="DeviceTypeMasters">
-    <Type Name="DeviceTypeMaster">
-      <Column Name="DeviceTypeId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DeviceTypeDesc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.MapMaster" Member="MapMasters">
     <Type Name="MapMaster">
       <Column Name="MapId" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -78,6 +78,15 @@
       <Column Name="MapDesc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OutStudentTrack" Member="OutStudentTracks">
+    <Type Name="OutStudentTrack">
+      <Column Name="[_ID]" Member="_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StudentId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OutDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OutLat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="OutLong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.RoleMaster" Member="RoleMasters">
@@ -107,6 +116,14 @@
       <Column Name="SeqNo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Lat" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Long" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StudentDetails" Member="StudentDetails">
+    <Type Name="StudentDetail">
+      <Column Name="StudentId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BarcodeId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Vehicle_UserId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.StudentMaster" Member="StudentMasters">
@@ -144,7 +161,7 @@
     <Type Name="UserDeviceMapDet">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="UserId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DeviceId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="MappedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="MappedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="isActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
@@ -178,6 +195,21 @@
       <Column Name="MappedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.UservehicleMapDet" Member="UservehicleMapDets">
+    <Type Name="UservehicleMapDet">
+      <Column Name="[_iD]" Member="_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="vehicleId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VehicleDeviceMapDet" Member="VehicleDeviceMapDets">
+    <Type Name="VehicleDeviceMapDet">
+      <Column Name="[_iD]" Member="_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="vehicleId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="DeviceId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.VehicleMaster" Member="VehicleMasters">
     <Type Name="VehicleMaster">
       <Column Name="[_Id]" Member="_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -188,39 +220,15 @@
       <Column Name="AccountId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.vehicleRouteMapDet" Member="vehicleRouteMapDets">
-    <Type Name="vehicleRouteMapDet">
+  <Table Name="dbo.VehicleRouteMapDet" Member="VehicleRouteMapDets">
+    <Type Name="VehicleRouteMapDet">
       <Column Name="[_id]" Member="_id" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="vehicleId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VehicleId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RouteId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="CreatedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UpdatedBy" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.VehicleDeviceMapDet" Member="VehicleDeviceMapDets">
-    <Type Name="VehicleDeviceMapDet">
-      <Column Name="[_iD]" Member="_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="vehicleId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="DeviceId" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
-      <Column Name="IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.UservehicleMapDet" Member="UservehicleMapDets">
-    <Type Name="UservehicleMapDet">
-      <Column Name="[_iD]" Member="_iD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="vehicleId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="UserId" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.OutStudentTrack" Member="OutStudentTracks">
-    <Type Name="OutStudentTrack">
-      <Column Name="[_ID]" Member="_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="StudentId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OutDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="OutLat" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="OutLong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

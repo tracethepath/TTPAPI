@@ -93,7 +93,7 @@ namespace TTPAPI.Controllers
                                                    PhoneNumber = objUserContactDets.PhoneNumber,
                                                    PostalAddress = objUserContactDets.PostalAddress,
                                                    EmailAddress = objUserContactDets.EmailAddress,
-                                                   DeviceId = (Int32?)g.Select(x => x.DeviceId).FirstOrDefault(),
+                                                   DeviceId = g.Select(x => x.DeviceId).FirstOrDefault(),
                                                    Password = objUserLoginDets.Password,
                                                    //  LastLoginDateTime=  objUserLoginDets.LastLoginDateTime,
                                                    //   UpdatedDateTime=objUserLoginDets.UpdatedDateTime
