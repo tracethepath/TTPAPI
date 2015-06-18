@@ -280,7 +280,7 @@ namespace TTPAPI.Controllers
         //   GetStudentLocation - Http POST Mehtod - Url : api/StudentInfo/GetStudentLocation?studentId=123&AppKey=
         [HttpGet]
         [ActionName("GetStudentLocation")]
-        public HttpResponseMessage StudentList(string studentId,string AppKey)
+        public HttpResponseMessage StudentLocation(string studentId,string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -295,18 +295,21 @@ namespace TTPAPI.Controllers
 
 
                         var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).ToList();
+                        
                         if (objInStudentTracks != null)
                         {
-
+                             
                             var objOutstudentTrack = DB.OutStudentTracks.Where(x => x.StudentId == studentId).ToList();
+                            
                             if (objOutstudentTrack != null)
                             {
-                                response.Content = new StringContent("{\"InStudentTracks\":" +JsonConvert.SerializeObject(objInStudentTracks) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack)+"}", Encoding.UTF8, "application/json");
+                                //response.Content = new StringContent("{\"InStudentTracks\":" +JsonConvert.SerializeObject(objInStudentTracks) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack)+"}", Encoding.UTF8, "application/json");
+                                response.Content = new StringContent("{\"InStudentTracks\":" + JsonConvert.SerializeObject(objInStudentTracks.ToArray().Last()) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack.ToArray().Last()) + "}", Encoding.UTF8, "application/json");
                                 return response;
                             }
                             else
                             {
-                                response.Content = new StringContent(JsonConvert.SerializeObject(objInStudentTracks), Encoding.UTF8, "application/json");
+                                response.Content = new StringContent(JsonConvert.SerializeObject(objInStudentTracks.ToArray().Last()), Encoding.UTF8, "application/json");
                                 return response;
                             }
                         }
