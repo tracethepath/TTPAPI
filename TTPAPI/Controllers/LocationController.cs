@@ -43,7 +43,7 @@ namespace TTPAPI.Controllers
                                 objDevicecurrentlocation.CurrentLat = Lat;
                                 objDevicecurrentlocation.CurrentLong = Long;
                                 objDevicecurrentlocation.DeviceId = DeviceId;
-                                objDevicecurrentlocation.UdatedDateTime = DateTime;
+                                objDevicecurrentlocation.UpatedDateTime = DateTime;
                                 DB.DeviceCurrentLocations.InsertOnSubmit(objDevicecurrentlocation);
                                 DB.SubmitChanges();
 
@@ -53,7 +53,7 @@ namespace TTPAPI.Controllers
                                 objcurrentlocation.CurrentLat = Lat;
                                 objcurrentlocation.CurrentLong = Long;
                                 objcurrentlocation.DeviceId = DeviceId;
-                                objcurrentlocation.UdatedDateTime = DateTime;
+                                objcurrentlocation.UpatedDateTime= DateTime;
                                 DB.SubmitChanges();
                             }
                             

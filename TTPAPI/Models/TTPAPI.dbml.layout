@@ -20,12 +20,6 @@
         <elementListCompartment Id="c4f42948-0a36-4c1f-b8b5-a7f059991aee" absoluteBounds="0.765, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="58ed9bf1-980d-42a6-8899-250845dbb918" absoluteBounds="3.75, 3.75, 2, 1.7708968098958327">
-      <DataClassMoniker Name="/TTPAPIDataContext/DeviceCurrentLocation" />
-      <nestedChildShapes>
-        <elementListCompartment Id="3f4568dc-8139-4fea-a12d-9a1d23b58722" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="75f37f04-f67d-44fb-b9dc-88fdaccb28c5" absoluteBounds="6.75, 0.75, 2, 1.9631982421875003">
       <DataClassMoniker Name="/TTPAPIDataContext/DeviceLocationHistory" />
       <nestedChildShapes>
@@ -150,6 +144,12 @@
       <DataClassMoniker Name="/TTPAPIDataContext/VehicleRouteMapDet" />
       <nestedChildShapes>
         <elementListCompartment Id="f2b2a25c-0775-49b1-9663-a2d9f281441a" absoluteBounds="15.765, 4.21, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c80cdc9e-677a-4307-b00d-32fa3bc316b9" absoluteBounds="4.125, 3.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TTPAPIDataContext/DeviceCurrentLocation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d821418e-5e7b-4518-9883-f598abdca397" absoluteBounds="4.14, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

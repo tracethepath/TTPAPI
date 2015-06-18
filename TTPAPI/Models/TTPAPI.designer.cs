@@ -39,9 +39,6 @@ namespace TTPAPI.Models
     partial void InsertAccountManagemet(AccountManagemet instance);
     partial void UpdateAccountManagemet(AccountManagemet instance);
     partial void DeleteAccountManagemet(AccountManagemet instance);
-    partial void InsertDeviceCurrentLocation(DeviceCurrentLocation instance);
-    partial void UpdateDeviceCurrentLocation(DeviceCurrentLocation instance);
-    partial void DeleteDeviceCurrentLocation(DeviceCurrentLocation instance);
     partial void InsertDeviceLocationHistory(DeviceLocationHistory instance);
     partial void UpdateDeviceLocationHistory(DeviceLocationHistory instance);
     partial void DeleteDeviceLocationHistory(DeviceLocationHistory instance);
@@ -102,6 +99,9 @@ namespace TTPAPI.Models
     partial void InsertVehicleRouteMapDet(VehicleRouteMapDet instance);
     partial void UpdateVehicleRouteMapDet(VehicleRouteMapDet instance);
     partial void DeleteVehicleRouteMapDet(VehicleRouteMapDet instance);
+    partial void InsertDeviceCurrentLocation(DeviceCurrentLocation instance);
+    partial void UpdateDeviceCurrentLocation(DeviceCurrentLocation instance);
+    partial void DeleteDeviceCurrentLocation(DeviceCurrentLocation instance);
     #endregion
 		
 		public TTPAPIDataContext() : 
@@ -155,14 +155,6 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<AccountManagemet>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DeviceCurrentLocation> DeviceCurrentLocations
-		{
-			get
-			{
-				return this.GetTable<DeviceCurrentLocation>();
 			}
 		}
 		
@@ -331,6 +323,14 @@ namespace TTPAPI.Models
 			get
 			{
 				return this.GetTable<VehicleRouteMapDet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DeviceCurrentLocation> DeviceCurrentLocations
+		{
+			get
+			{
+				return this.GetTable<DeviceCurrentLocation>();
 			}
 		}
 	}
@@ -784,164 +784,6 @@ namespace TTPAPI.Models
 					this._AppKey = value;
 					this.SendPropertyChanged("AppKey");
 					this.OnAppKeyChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceCurrentLocation")]
-	public partial class DeviceCurrentLocation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private long @__id;
-		
-		private string _DeviceId;
-		
-		private string _CurrentLat;
-		
-		private string _CurrentLong;
-		
-		private System.DateTime _UdatedDateTime;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void On_idChanging(long value);
-    partial void On_idChanged();
-    partial void OnDeviceIdChanging(string value);
-    partial void OnDeviceIdChanged();
-    partial void OnCurrentLatChanging(string value);
-    partial void OnCurrentLatChanged();
-    partial void OnCurrentLongChanging(string value);
-    partial void OnCurrentLongChanged();
-    partial void OnUdatedDateTimeChanging(System.DateTime value);
-    partial void OnUdatedDateTimeChanged();
-    #endregion
-		
-		public DeviceCurrentLocation()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public long _id
-		{
-			get
-			{
-				return this.@__id;
-			}
-			set
-			{
-				if ((this.@__id != value))
-				{
-					this.On_idChanging(value);
-					this.SendPropertyChanging();
-					this.@__id = value;
-					this.SendPropertyChanged("_id");
-					this.On_idChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string DeviceId
-		{
-			get
-			{
-				return this._DeviceId;
-			}
-			set
-			{
-				if ((this._DeviceId != value))
-				{
-					this.OnDeviceIdChanging(value);
-					this.SendPropertyChanging();
-					this._DeviceId = value;
-					this.SendPropertyChanged("DeviceId");
-					this.OnDeviceIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentLat", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CurrentLat
-		{
-			get
-			{
-				return this._CurrentLat;
-			}
-			set
-			{
-				if ((this._CurrentLat != value))
-				{
-					this.OnCurrentLatChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentLat = value;
-					this.SendPropertyChanged("CurrentLat");
-					this.OnCurrentLatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentLong", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string CurrentLong
-		{
-			get
-			{
-				return this._CurrentLong;
-			}
-			set
-			{
-				if ((this._CurrentLong != value))
-				{
-					this.OnCurrentLongChanging(value);
-					this.SendPropertyChanging();
-					this._CurrentLong = value;
-					this.SendPropertyChanged("CurrentLong");
-					this.OnCurrentLongChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UdatedDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime UdatedDateTime
-		{
-			get
-			{
-				return this._UdatedDateTime;
-			}
-			set
-			{
-				if ((this._UdatedDateTime != value))
-				{
-					this.OnUdatedDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._UdatedDateTime = value;
-					this.SendPropertyChanged("UdatedDateTime");
-					this.OnUdatedDateTimeChanged();
 				}
 			}
 		}
@@ -4351,6 +4193,164 @@ namespace TTPAPI.Models
 					this._UpdatedBy = value;
 					this.SendPropertyChanged("UpdatedBy");
 					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DeviceCurrentLocation")]
+	public partial class DeviceCurrentLocation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long @__id;
+		
+		private string _DeviceId;
+		
+		private string _CurrentLat;
+		
+		private string _CurrentLong;
+		
+		private System.DateTime _UpatedDateTime;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void On_idChanging(long value);
+    partial void On_idChanged();
+    partial void OnDeviceIdChanging(string value);
+    partial void OnDeviceIdChanged();
+    partial void OnCurrentLatChanging(string value);
+    partial void OnCurrentLatChanged();
+    partial void OnCurrentLongChanging(string value);
+    partial void OnCurrentLongChanged();
+    partial void OnUpatedDateTimeChanging(System.DateTime value);
+    partial void OnUpatedDateTimeChanged();
+    #endregion
+		
+		public DeviceCurrentLocation()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[_id]", Storage="__id", AutoSync=AutoSync.OnInsert, DbType="BigInt NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public long _id
+		{
+			get
+			{
+				return this.@__id;
+			}
+			set
+			{
+				if ((this.@__id != value))
+				{
+					this.On_idChanging(value);
+					this.SendPropertyChanging();
+					this.@__id = value;
+					this.SendPropertyChanged("_id");
+					this.On_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeviceId", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DeviceId
+		{
+			get
+			{
+				return this._DeviceId;
+			}
+			set
+			{
+				if ((this._DeviceId != value))
+				{
+					this.OnDeviceIdChanging(value);
+					this.SendPropertyChanging();
+					this._DeviceId = value;
+					this.SendPropertyChanged("DeviceId");
+					this.OnDeviceIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentLat", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CurrentLat
+		{
+			get
+			{
+				return this._CurrentLat;
+			}
+			set
+			{
+				if ((this._CurrentLat != value))
+				{
+					this.OnCurrentLatChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentLat = value;
+					this.SendPropertyChanged("CurrentLat");
+					this.OnCurrentLatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentLong", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string CurrentLong
+		{
+			get
+			{
+				return this._CurrentLong;
+			}
+			set
+			{
+				if ((this._CurrentLong != value))
+				{
+					this.OnCurrentLongChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentLong = value;
+					this.SendPropertyChanged("CurrentLong");
+					this.OnCurrentLongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpatedDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime UpatedDateTime
+		{
+			get
+			{
+				return this._UpatedDateTime;
+			}
+			set
+			{
+				if ((this._UpatedDateTime != value))
+				{
+					this.OnUpatedDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._UpatedDateTime = value;
+					this.SendPropertyChanged("UpatedDateTime");
+					this.OnUpatedDateTimeChanged();
 				}
 			}
 		}
