@@ -352,6 +352,5 @@ C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\bin\S
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\bin\System.Web.WebPages.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\bin\System.Web.WebPages.Deployment.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\bin\System.Web.WebPages.Razor.xml
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.csprojResolveAssemblyReference.cache
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\4-jun-2015\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.pdb

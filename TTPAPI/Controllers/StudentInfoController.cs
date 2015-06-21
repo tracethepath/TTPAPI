@@ -117,8 +117,8 @@ namespace TTPAPI.Controllers
 
         //   StudentList - Http POST Mehtod - Url : api/StudentInfo/StudentList?VehicleId=&AppKey=
         [HttpPost]
-        [ActionName("StudentList")]
-        public HttpResponseMessage StudentList(StudentMaster objstudentlist, string VehicleId, string AppKey)
+        [ActionName("GetStudentList")]
+        public HttpResponseMessage GetStudentList(StudentMaster objstudentlist, string VehicleId, string AppKey)
         {
             string strJson = string.Empty;
             var response = this.Request.CreateResponse(HttpStatusCode.OK);
@@ -293,19 +293,35 @@ namespace TTPAPI.Controllers
                     using (TTPAPIDataContext DB = new TTPAPIDataContext())
                     {
 
+                        var objStudentVechicleMap = (from objStudentVechicle in DB.StudentVehicleMapDetails
+                                                     where objStudentVechicle.StudentID == studentId
+                                                     select new { objStudentVechicle });
 
                         var objInStudentTracks = DB.InStudentTracks.Where(x => x.StudentId == studentId).ToList();
                         
                         if (objInStudentTracks != null)
                         {
-                             
+                            
+
                             var objOutstudentTrack = DB.OutStudentTracks.Where(x => x.StudentId == studentId).ToList();
                             
                             if (objOutstudentTrack != null)
                             {
-                                //response.Content = new StringContent("{\"InStudentTracks\":" +JsonConvert.SerializeObject(objInStudentTracks) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack)+"}", Encoding.UTF8, "application/json");
-                                response.Content = new StringContent("{\"InStudentTracks\":" + JsonConvert.SerializeObject(objInStudentTracks.ToArray().Last()) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack.ToArray().Last()) + "}", Encoding.UTF8, "application/json");
-                                return response;
+                                if (objOutstudentTrack.ToArray().Last().OutDateTime > objInStudentTracks.ToArray().Last().InDateTime)
+                                {
+                                    //response.Content = new StringContent("{\"InStudentTracks\":" +JsonConvert.SerializeObject(objInStudentTracks) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack)+"}", Encoding.UTF8, "application/json");
+                                    response.Content = new StringContent("{\"InStudentTracks\":" + JsonConvert.SerializeObject(objInStudentTracks.ToArray().Last()) + "," + "\"OutStudentTracks\":" + JsonConvert.SerializeObject(objOutstudentTrack.ToArray().Last()) + "}", Encoding.UTF8, "application/json");
+                                    return response;
+                                }
+                                else
+                                {
+                                    var objDevicecurrentlocations = (from objvehicalmap in DB.VehicleDeviceMapDets
+                                                                    join objDevicecurrentlocation in DB.DeviceCurrentLocations on objvehicalmap.DeviceId equals objDevicecurrentlocation.DeviceId
+                                                                    where (objvehicalmap.vehicleId == objStudentVechicleMap.FirstOrDefault().objStudentVechicle.VehicleId)
+                                                                    select objDevicecurrentlocation).ToList();
+                                    response.Content = new StringContent("{\"InStudentTracks\":" + JsonConvert.SerializeObject(objInStudentTracks.ToArray().Last()) + "," + "\"Location\":" + JsonConvert.SerializeObject(objDevicecurrentlocations) + "}", Encoding.UTF8, "application/json");
+                                    return response;
+                                }
                             }
                             else
                             {
@@ -320,6 +336,19 @@ namespace TTPAPI.Controllers
                             return response;
                         }
                     }
+
+                    /*var objDevicecurrentlocations = (from objvehicalmap in DB.VehicleDeviceMapDets
+                                                     join objDevicecurrentlocation in DB.DeviceCurrentLocations on objvehicalmap.DeviceId equals objDevicecurrentlocation.DeviceId
+                                                     where (objvehicalmap.vehicleId == VehicleId)
+                                                     select objDevicecurrentlocation).ToList();
+
+
+                    if (objDevicecurrentlocations != null)
+                    {
+                        response.Content = new StringContent(JsonConvert.SerializeObject(objDevicecurrentlocations), Encoding.UTF8, "application/json");
+                        return response;
+                    }*/
+
               //  }
                 //else
                 //{
