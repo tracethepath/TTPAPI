@@ -13,7 +13,7 @@ namespace TTPAPI.Controllers
     public class LocationController : ApiController
     {
         //   PostLocation - Http Get Mehtod - Url : api/Location/PostLocation?Lat=23&Long=345&DateTime=2014-10-05 18:47:59.927&Typeofnetwork=gsm&Token=0f8fad5b-d9cb-469f-a165-70867728950e&AppKey=0&DeviceId=1
-        [HttpPost]
+        [HttpGet]
         [ActionName("PostLocation")]
         public HttpResponseMessage AddPostLocation(string Lat, string Long, DateTime DateTime, string Typeofnetwork, string Token, string AppKey, string DeviceId)
         {
