@@ -360,10 +360,7 @@ C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\EntityFramework.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\Microsoft.Web.Infrastructure.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\Newtonsoft.Json.dll
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Net.Http.Formatting.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Helpers.dll
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Http.dll
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Http.WebHost.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Mvc.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Optimization.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Providers.dll
@@ -374,15 +371,11 @@ C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\WebGrease.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\EntityFramework.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\Newtonsoft.Json.xml
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Net.Http.Formatting.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Helpers.xml
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Http.xml
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Http.WebHost.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Mvc.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.Razor.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.WebPages.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.WebPages.Deployment.xml
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\bin\System.Web.WebPages.Razor.xml
-C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.csprojResolveAssemblyReference.cache
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.dll
 C:\Sanjay\Work\NonOffice\Transcurite\Code\webapi\Production Code\TTPAAPI\TTPAPI\obj\Debug\TTPAPI.pdb

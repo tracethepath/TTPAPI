@@ -23,26 +23,35 @@ namespace TTPAPI.Controllers
             {
                 using (TTPAPIDataContext DB = new TTPAPIDataContext())
                 {
-                    var checkAccountmanagment = DB.AccountManagemets.Where(x => x.AccountID == objSt.AccountID).FirstOrDefault();
-                    if (checkAccountmanagment == null)
+                    if (objSt != null)
                     {
-                        AccountManagemet objAccountManagemet = new AccountManagemet();
-                        objAccountManagemet.AccountID = objSt.AccountID;
-                        objAccountManagemet.AccountName = objSt.AccountName;
-                        objAccountManagemet.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
-                        objAccountManagemet.UpdatedDateTime = DateTime.Now;
-                        objAccountManagemet.AccountDesc = objSt.AccountDesc;
-                        objAccountManagemet.AppKey = Guid.NewGuid();
-                        DB.AccountManagemets.InsertOnSubmit(objAccountManagemet);
-                        DB.SubmitChanges();
+                        var checkAccountmanagment = DB.AccountManagemets.Where(x => x.AccountID == objSt.AccountID).FirstOrDefault();
+                        if (checkAccountmanagment == null)
+                        {
+                            AccountManagemet objAccountManagemet = new AccountManagemet();
+                            objAccountManagemet.AccountID = objSt.AccountID;
+                            objAccountManagemet.AccountName = objSt.AccountName;
+                            objAccountManagemet.UpdatedBy = String.Format("{0}{1}", Token.Substring(0, 36), DateTime.Now.ToShortDateString());
+                            objAccountManagemet.UpdatedDateTime = DateTime.Now;
+                            objAccountManagemet.AccountDesc = objSt.AccountDesc;
+                            objAccountManagemet.AppKey = Guid.NewGuid();
+                            DB.AccountManagemets.InsertOnSubmit(objAccountManagemet);
+                            DB.SubmitChanges();
 
-                        strJson = "{\"Result\":\"204\"}";
-                        response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
-                        return response;
+                            strJson = "{\"Result\":\"204\"}";
+                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                        else
+                        {
+                            strJson = "{\"Result\":\"AccountID is Already Use\"}";
+                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                            return response;
+                        }
                     }
                     else
                     {
-                        strJson = "{\"Result\":\"AccountID is Already Use\"}";
+                        strJson = "{\"Result\":\"No Input request was passed in the body\"}";
                         response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
                         return response;
                     }
