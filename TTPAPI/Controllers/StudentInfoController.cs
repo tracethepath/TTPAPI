@@ -37,7 +37,7 @@ namespace TTPAPI.Controllers
                         objStudentMasters.Division = objStudentMaster.Division;
                         objStudentMasters.Name = objStudentMaster.Name;
                         objStudentMasters.StudentID = objStudentMaster.StudentID;
-                        objStudentMasters.IsDelete = true;
+                        objStudentMasters.IsDelete = objStudentMaster.IsDelete;
 
                         DB.StudentMasters.InsertOnSubmit(objStudentMasters);
                         DB.SubmitChanges();

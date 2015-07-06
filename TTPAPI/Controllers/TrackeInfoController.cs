@@ -29,7 +29,8 @@ namespace TTPAPI.Controllers
                     {
 
                         InStudentTrack objInStudentTracks = new InStudentTrack();
-                        objInStudentTracks.InDateTime = objInStudentTrack.InDateTime;
+                       // objInStudentTracks.InDateTime = objInStudentTrack.InDateTime; - needto refactor this as the InDatetime will be from the server. This will not help mcuh if we implement the queing model for requests in the app.
+                        objInStudentTracks.InDateTime = DateTime.Now;
                         objInStudentTracks.InLat = objInStudentTrack.InLat;
                         objInStudentTracks.InLong = objInStudentTrack.InLong;
                         objInStudentTracks.StudentId = objInStudentTrack.StudentId;
@@ -76,7 +77,8 @@ namespace TTPAPI.Controllers
                     {
 
                         OutStudentTrack objOutStudentTracks = new OutStudentTrack();
-                        objOutStudentTracks.OutDateTime = objOutStudentTrack.OutDateTime;
+                        //objOutStudentTracks.OutDateTime = objOutStudentTrack.OutDateTime;
+                        objOutStudentTracks.OutDateTime = DateTime.Now;
                         objOutStudentTracks.OutLat = objOutStudentTrack.OutLat;
                         objOutStudentTracks.OutLong = objOutStudentTrack.OutLong;
                         objOutStudentTracks.StudentId = objOutStudentTrack.StudentId;

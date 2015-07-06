@@ -210,6 +210,68 @@ namespace TTPAPI.Controllers
             }
         }
 
+        //GetVehicleLocationforAccount
+        //   VehicleList - Http POST Mehtod - Url : api/VehicleInfo/GetVehicleLocationforAccount?AccountId=123&Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
+        [HttpGet]
+        [ActionName("GetVehicleLocationforAccount")]
+        public HttpResponseMessage VehicleLocationforAccount(string AccountId, string Token, string AppKey)
+        {
+            string strJson = string.Empty;
+            var response = this.Request.CreateResponse(HttpStatusCode.OK);
+            try
+            {
+                Accountmeg objaccountmegment = new Accountmeg();
+                string result = objaccountmegment.Getresult(AppKey, Token);
+                if (result == "true")
+                {
+                    using (TTPAPIDataContext DB = new TTPAPIDataContext())
+                    {
+                        List<VehicleLocation> listObjVh = new List<Controllers.VehicleLocation>();
+                        VehicleLocation objVh;
+
+
+                        var objDevicecurrentlocations = (from objvehicalmap in DB.VehicleDeviceMapDets
+                                                         join objDevicecurrentlocation in DB.DeviceCurrentLocations on objvehicalmap.DeviceId equals objDevicecurrentlocation.DeviceId
+                                                         join  objvehicles in DB.VehicleMasters on AccountId equals objvehicles.AccountId
+                                                         where (objvehicalmap.vehicleId == objvehicles.VehicleID)
+                                                         select objDevicecurrentlocation).ToList();
+                        foreach (DeviceCurrentLocation cdeviceurrentloc in objDevicecurrentlocations)
+                        {
+                            objVh = new Controllers.VehicleLocation();
+                            objVh.deviceCurrentLocatio = cdeviceurrentloc;
+                            objVh.vehicleId = (from objvehicalmap in DB.VehicleDeviceMapDets where (objvehicalmap.DeviceId == cdeviceurrentloc.DeviceId) select objvehicalmap.vehicleId).FirstOrDefault();
+                            listObjVh.Add(objVh);
+                        }
+
+                       if (listObjVh != null)
+                        {
+                            response.Content = new StringContent(JsonConvert.SerializeObject(listObjVh), Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                        else
+                        {
+                            strJson = "{\"Result\":\"100\"}";
+                            response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                            return response;
+                        }
+                    }
+                }
+                else
+                {
+                    strJson = result;
+                    response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                strJson = "{\"Result\":\"" + ex.Message + "\"}";
+                response.Content = new StringContent(strJson, Encoding.UTF8, "application/json");
+                return response;
+            }
+        }
+
+
         //   AddVehicleInfo - Http POST Mehtod - Url : api/VehicleInfo/MapUsertoVehicle?Token=1f8fad5b-d9cb-469f-a165-70867728950e&AppKey=
         [HttpPost]
         [ActionName("MapUsertoVehicle")]
@@ -254,5 +316,40 @@ namespace TTPAPI.Controllers
         }
 
 
+    }
+
+    public class VehicleLocation
+    {
+        private DeviceCurrentLocation _deviceCurrentLocation;
+        private string _vehicleId;
+
+        public DeviceCurrentLocation deviceCurrentLocatio
+        {
+            get
+            {
+                return _deviceCurrentLocation;
+            }
+            set
+            {
+                this._deviceCurrentLocation = new DeviceCurrentLocation();
+                this._deviceCurrentLocation._id = value._id;
+                this._deviceCurrentLocation.CurrentLat = value.CurrentLat;
+                this._deviceCurrentLocation.CurrentLong =  value.CurrentLong;
+                this._deviceCurrentLocation.DeviceId = value.DeviceId;
+                this._deviceCurrentLocation.UpatedDateTime = value.UpatedDateTime;
+            }
+        }
+
+        public string vehicleId
+        {
+            get
+            {
+                return _vehicleId;
+            }
+            set
+            {
+                _vehicleId = value;
+            }
+        }
     }
 }
