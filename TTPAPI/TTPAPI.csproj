@@ -126,6 +126,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountManagemetController.cs" />
     <Compile Include="Controllers\AddAppKeyController.cs" />
+    <Compile Include="Controllers\CCTVController.cs" />
     <Compile Include="Controllers\CreateRouteController.cs" />
     <Compile Include="Controllers\DeviceDetailController.cs" />
     <Compile Include="Controllers\DeviceTypeController.cs" />
@@ -151,6 +152,9 @@
     <Compile Include="Models\MessageHandler.cs" />
     <Compile Include="Models\Route.cs" />
     <Compile Include="Models\StudentList.cs" />
+    <Compile Include="Models\TTPAPI.cs">
+      <DependentUpon>TTPAPI.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Models\TTPAPI.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

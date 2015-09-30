@@ -231,4 +231,13 @@
       <Column Name="UpatedDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
+  <Table Name="dbo.CCTV_Details" Member="CCTV_Details">
+    <Type Name="CCTV_Detail">
+      <Column Name="AccountID" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="IP" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Port" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Username" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18, 16.625" name="TTPAPI">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.875, 16.625" name="TTPAPI">
   <DataContextMoniker Name="/TTPAPIDataContext" />
   <nestedChildShapes>
     <classShape Id="f46f6a16-9c2c-4903-afc5-8e226a346b38" absoluteBounds="0.75, 0.75, 2, 1.5785953776041666">
@@ -150,6 +150,12 @@
       <DataClassMoniker Name="/TTPAPIDataContext/DeviceCurrentLocation" />
       <nestedChildShapes>
         <elementListCompartment Id="d821418e-5e7b-4518-9883-f598abdca397" absoluteBounds="4.14, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e06c6397-74b4-4855-bbb4-23a1769adfce" absoluteBounds="19.625, 3.125, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/TTPAPIDataContext/CCTV_Detail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8e966f98-0795-43aa-914a-3ccf372b8d97" absoluteBounds="19.64, 3.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
